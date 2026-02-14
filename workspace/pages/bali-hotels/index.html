@@ -1,0 +1,627 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Bali'26 — Отели 🏝️</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  
+  body {
+    font-family: 'Inter', -apple-system, sans-serif;
+    background: #0a0b0f;
+    color: #e4e4e7;
+    min-height: 100vh;
+    -webkit-font-smoothing: antialiased;
+  }
+  
+  /* HERO */
+  .hero {
+    background: linear-gradient(160deg, #0f1524 0%, #0d1f3c 40%, #1a0f2e 100%);
+    padding: 3.5rem 1.5rem 2.5rem;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+    border-bottom: 1px solid rgba(255,255,255,0.05);
+  }
+  .hero::before {
+    content: '';
+    position: absolute; inset: 0;
+    background: 
+      radial-gradient(ellipse 600px 400px at 20% 80%, rgba(34,197,94,0.07) 0%, transparent 70%),
+      radial-gradient(ellipse 500px 500px at 80% 20%, rgba(99,102,241,0.07) 0%, transparent 70%);
+  }
+  .hero * { position: relative; }
+  .hero h1 {
+    font-size: clamp(1.8rem, 5vw, 2.8rem);
+    font-weight: 800;
+    background: linear-gradient(135deg, #34d399, #818cf8, #f472b6);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    letter-spacing: -0.02em;
+  }
+  .hero .subtitle {
+    font-size: 1rem;
+    color: #94a3b8;
+    margin-top: 0.4rem;
+    font-weight: 300;
+  }
+  .hero .dates {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.6rem;
+    margin-top: 1.2rem;
+    padding: 0.6rem 1.4rem;
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: 2rem;
+    font-size: 0.88rem;
+    color: #cbd5e1;
+    backdrop-filter: blur(12px);
+  }
+  .stats {
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+    margin-top: 1.2rem;
+    flex-wrap: wrap;
+  }
+  .stat {
+    text-align: center;
+  }
+  .stat-num {
+    font-size: 1.6rem;
+    font-weight: 700;
+    color: #f1f5f9;
+  }
+  .stat-label {
+    font-size: 0.72rem;
+    color: #64748b;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    margin-top: 0.15rem;
+  }
+
+  /* SECTIONS */
+  .section-label {
+    max-width: 1280px;
+    margin: 2.5rem auto 1.2rem;
+    padding: 0 1.5rem;
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: #f1f5f9;
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+  }
+  .section-label .accent { color: #f59e0b; }
+  .section-label .count {
+    font-size: 0.75rem;
+    background: rgba(255,255,255,0.06);
+    padding: 2px 10px;
+    border-radius: 20px;
+    color: #94a3b8;
+    font-weight: 500;
+  }
+
+  /* GRID */
+  .grid {
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 0 1.5rem 1rem;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: 1.2rem;
+  }
+  
+  /* CARD */
+  .card {
+    background: #13141b;
+    border-radius: 16px;
+    overflow: hidden;
+    border: 1px solid #1e1f2a;
+    transition: all 0.25s ease;
+    position: relative;
+  }
+  .card:hover {
+    transform: translateY(-6px);
+    border-color: rgba(99,102,241,0.4);
+    box-shadow: 0 20px 60px rgba(0,0,0,0.4), 0 0 30px rgba(99,102,241,0.08);
+  }
+  .card.finalist {
+    border-color: rgba(245,158,11,0.3);
+    background: linear-gradient(180deg, #18170e 0%, #13141b 30%);
+  }
+  .card.finalist:hover {
+    border-color: rgba(245,158,11,0.6);
+    box-shadow: 0 20px 60px rgba(0,0,0,0.4), 0 0 30px rgba(245,158,11,0.1);
+  }
+  
+  .finalist-badge {
+    position: absolute;
+    top: 12px; right: 12px;
+    background: linear-gradient(135deg, #f59e0b, #ef4444);
+    color: #fff;
+    font-size: 0.68rem;
+    font-weight: 700;
+    padding: 5px 12px;
+    border-radius: 20px;
+    z-index: 3;
+    text-transform: uppercase;
+    letter-spacing: 0.6px;
+    box-shadow: 0 4px 15px rgba(245,158,11,0.3);
+  }
+  
+  .card-img-wrap {
+    position: relative;
+    overflow: hidden;
+  }
+  .card-img {
+    width: 100%;
+    height: 220px;
+    object-fit: cover;
+    display: block;
+    background: #1a1b23;
+    transition: transform 0.4s ease;
+  }
+  .card:hover .card-img { transform: scale(1.05); }
+  
+  .rating-pill {
+    position: absolute;
+    bottom: 12px; left: 12px;
+    padding: 4px 12px;
+    border-radius: 8px;
+    font-size: 0.85rem;
+    font-weight: 700;
+    color: #0a0b0f;
+    z-index: 2;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.3);
+  }
+  
+  .card-body {
+    padding: 1.2rem 1.3rem 1.3rem;
+  }
+  .card-body h3 {
+    font-size: 1.05rem;
+    font-weight: 600;
+    margin-bottom: 0.6rem;
+    color: #f1f5f9;
+    line-height: 1.3;
+  }
+  
+  .meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem;
+    margin-bottom: 0.8rem;
+  }
+  .tag {
+    font-size: 0.72rem;
+    padding: 3px 10px;
+    border-radius: 20px;
+    background: rgba(99,102,241,0.1);
+    color: #a5b4fc;
+    font-weight: 500;
+  }
+  .tag.kz { background: rgba(139,92,246,0.12); color: #c4b5fd; }
+  .tag.natasha { background: rgba(236,72,153,0.12); color: #f9a8d4; }
+  .tag.rating-text { background: rgba(255,255,255,0.04); color: #94a3b8; }
+  
+  .price-tag {
+    background: linear-gradient(135deg, rgba(34,197,94,0.1), rgba(34,197,94,0.05));
+    border: 1px solid rgba(34,197,94,0.2);
+    border-radius: 10px;
+    padding: 0.6rem 0.8rem;
+    font-size: 0.8rem;
+    color: #86efac;
+    margin-bottom: 0.8rem;
+    line-height: 1.4;
+  }
+  
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    padding: 0.55rem 1.3rem;
+    background: linear-gradient(135deg, #4f46e5, #6366f1);
+    color: #fff;
+    text-decoration: none;
+    border-radius: 10px;
+    font-size: 0.82rem;
+    font-weight: 500;
+    transition: all 0.2s;
+    border: none;
+    cursor: pointer;
+  }
+  .btn:hover {
+    background: linear-gradient(135deg, #6366f1, #818cf8);
+    box-shadow: 0 4px 20px rgba(99,102,241,0.3);
+  }
+  
+  .footer {
+    text-align: center;
+    padding: 3rem 1.5rem;
+    color: #334155;
+    font-size: 0.78rem;
+    border-top: 1px solid rgba(255,255,255,0.03);
+    margin-top: 2rem;
+  }
+  .footer a { color: #475569; }
+
+  @media (max-width: 400px) {
+    .grid { grid-template-columns: 1fr; padding: 0 1rem; }
+    .hero { padding: 2.5rem 1rem 2rem; }
+    .card-img { height: 180px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="hero">
+  <h1>Bali'26 — Отели 🏝️</h1>
+  <div class="subtitle">KZ & Наташа выбирают отель в Убуде</div>
+  <div class="dates">📅 3–17 марта 2026 · Убуд · 2 взрослых</div>
+  <div class="stats">
+    <div class="stat"><div class="stat-num">20</div><div class="stat-label">отелей</div></div>
+    <div class="stat"><div class="stat-num">6</div><div class="stat-label">финалистов</div></div>
+    <div class="stat"><div class="stat-num">14</div><div class="stat-label">ночей</div></div>
+  </div>
+</div>
+
+<div class="section-label"><span class="accent">⭐</span> Финалисты <span class="count">6 отелей</span></div>
+<div class="grid">
+
+  <div class="card finalist">
+    <div class="finalist-badge">⭐ Финалист</div>
+    <div class="card-img-wrap">
+      <img class="card-img" src="https://cf.bstatic.com/xdata/images/hotel/max1024x768/776348031.jpg?k=6ce86232949750dab4b4a62e04c13854ea98667aae66931d49007100cd49ce06&o=" alt="Orchid Ubud Cottage" loading="lazy" onerror="this.src='https://placehold.co/600x400/1a1b23/475569?text=🏨'">
+      <div class="rating-pill" style="background:#22c55e">9.7</div>
+    </div>
+    <div class="card-body">
+      <h3>Orchid Ubud Cottage</h3>
+      <div class="meta">
+        <span class="tag kz">KZ</span>
+        <span class="tag rating-text">Превосходно</span>
+      </div>
+      
+      <a class="btn" href="https://www.booking.com/hotel/id/orchid-ubud-cottage.ru.html" target="_blank" rel="noopener">Смотреть на Booking.com →</a>
+    </div>
+  </div>
+
+  <div class="card finalist">
+    <div class="finalist-badge">⭐ Финалист</div>
+    <div class="card-img-wrap">
+      <img class="card-img" src="https://cf.bstatic.com/xdata/images/hotel/max1024x768/663317535.jpg?k=d3311485a094b8d0f3677f6ddca8ba75ab3bd2f66fe69a8651434553df5e0e1f&o=" alt="Big Dragon Villas Ubud" loading="lazy" onerror="this.src='https://placehold.co/600x400/1a1b23/475569?text=🏨'">
+      <div class="rating-pill" style="background:#4ade80">9.3</div>
+    </div>
+    <div class="card-body">
+      <h3>Big Dragon Villas Ubud</h3>
+      <div class="meta">
+        <span class="tag kz">KZ</span>
+        <span class="tag rating-text">Отлично</span>
+      </div>
+      
+      <a class="btn" href="https://www.booking.com/hotel/id/big-dragon-villas-ubud.ru.html" target="_blank" rel="noopener">Смотреть на Booking.com →</a>
+    </div>
+  </div>
+
+  <div class="card finalist">
+    <div class="finalist-badge">⭐ Финалист</div>
+    <div class="card-img-wrap">
+      <img class="card-img" src="https://cf.bstatic.com/xdata/images/hotel/max1024x768/822169742.jpg?k=8f1ed39d3c205c17b2e94d319d2414c513932544420f04cc491e479e4092f376&o=" alt="Puri Andong Villa" loading="lazy" onerror="this.src='https://placehold.co/600x400/1a1b23/475569?text=🏨'">
+      <div class="rating-pill" style="background:#4ade80">9.2</div>
+    </div>
+    <div class="card-body">
+      <h3>Puri Andong Villa</h3>
+      <div class="meta">
+        <span class="tag kz">KZ</span>
+        <span class="tag rating-text">Отлично</span>
+      </div>
+      <div class="price-tag">💰 IDR 1,112,133/ночь · 🍳 Завтрак на 2 включён</div>
+      <a class="btn" href="https://www.booking.com/hotel/id/puri-andong-villa.ru.html" target="_blank" rel="noopener">Смотреть на Booking.com →</a>
+    </div>
+  </div>
+
+  <div class="card finalist">
+    <div class="finalist-badge">⭐ Финалист</div>
+    <div class="card-img-wrap">
+      <img class="card-img" src="https://cf.bstatic.com/xdata/images/hotel/max1024x768/796844533.jpg?k=04fdf1da190f901f9ea6e2a2133ea1ec333a6ea5dd9f02e043a6749d7de63345&o=" alt="Dupa Ubud" loading="lazy" onerror="this.src='https://placehold.co/600x400/1a1b23/475569?text=🏨'">
+      <div class="rating-pill" style="background:#facc15">8.6</div>
+    </div>
+    <div class="card-body">
+      <h3>Dupa Ubud</h3>
+      <div class="meta">
+        <span class="tag kz">KZ</span>
+        <span class="tag rating-text">Очень хорошо</span>
+      </div>
+      
+      <a class="btn" href="https://www.booking.com/hotel/id/dupa-ubud-villa.ru.html" target="_blank" rel="noopener">Смотреть на Booking.com →</a>
+    </div>
+  </div>
+
+  <div class="card finalist">
+    <div class="finalist-badge">⭐ Финалист</div>
+    <div class="card-img-wrap">
+      <img class="card-img" src="https://cf.bstatic.com/xdata/images/hotel/max1024x768/802726337.jpg?k=5f57e7cd31ea808834cac64ef63c4f2bfaa0a19bc6be1eb6920b73c0fad165fe&o=" alt="Yulia Village Inn Ubud" loading="lazy" onerror="this.src='https://placehold.co/600x400/1a1b23/475569?text=🏨'">
+      <div class="rating-pill" style="background:#facc15">8.6</div>
+    </div>
+    <div class="card-body">
+      <h3>Yulia Village Inn Ubud</h3>
+      <div class="meta">
+        
+        <span class="tag rating-text">Очень хорошо</span>
+      </div>
+      
+      <a class="btn" href="https://www.booking.com/hotel/id/yulia-village-inn-ubud.ru.html" target="_blank" rel="noopener">Смотреть на Booking.com →</a>
+    </div>
+  </div>
+
+  <div class="card finalist">
+    <div class="finalist-badge">⭐ Финалист</div>
+    <div class="card-img-wrap">
+      <img class="card-img" src="https://cf.bstatic.com/xdata/images/hotel/max1024x768/384201913.jpg?k=b3840e03da5613d68e2c9a96db4b0dc8f99da16b54e999da64b34268dd0cb43e&o=" alt="Tamantara" loading="lazy" onerror="this.src='https://placehold.co/600x400/1a1b23/475569?text=🏨'">
+      <div class="rating-pill" style="background:#facc15">8.5</div>
+    </div>
+    <div class="card-body">
+      <h3>Tamantara</h3>
+      <div class="meta">
+        <span class="tag natasha">Наташа</span>
+        <span class="tag rating-text">Очень хорошо</span>
+      </div>
+      
+      <a class="btn" href="https://www.booking.com/hotel/id/tamantara.ru.html" target="_blank" rel="noopener">Смотреть на Booking.com →</a>
+    </div>
+  </div>
+</div>
+
+<div class="section-label">🏨 Остальные варианты <span class="count">14 отелей</span></div>
+<div class="grid">
+
+  <div class="card">
+    
+    <div class="card-img-wrap">
+      <img class="card-img" src="https://cf.bstatic.com/xdata/images/hotel/max1024x768/817396173.jpg?k=b01c031a58d584f8fbd996c8538a5a5b294e587bb8f3d4aa6f41e0b65d0b02fd&o=" alt="The Craft Hotel Ubud" loading="lazy" onerror="this.src='https://placehold.co/600x400/1a1b23/475569?text=🏨'">
+      <div class="rating-pill" style="background:#22c55e">9.9</div>
+    </div>
+    <div class="card-body">
+      <h3>The Craft Hotel Ubud</h3>
+      <div class="meta">
+        <span class="tag kz">KZ</span>
+        <span class="tag rating-text">Превосходно</span>
+      </div>
+      
+      <a class="btn" href="https://www.booking.com/hotel/id/the-craft-ubud.ru.html" target="_blank" rel="noopener">Смотреть на Booking.com →</a>
+    </div>
+  </div>
+
+  <div class="card">
+    
+    <div class="card-img-wrap">
+      <img class="card-img" src="https://cf.bstatic.com/xdata/images/hotel/max1024x768/609166442.jpg?k=06e4c3909772156969e8becfbda06b7510b549da5c6a30edcaf5805eef488ef6&o=" alt="Vila pondok damuh ubud" loading="lazy" onerror="this.src='https://placehold.co/600x400/1a1b23/475569?text=🏨'">
+      <div class="rating-pill" style="background:#22c55e">9.7</div>
+    </div>
+    <div class="card-body">
+      <h3>Vila pondok damuh ubud</h3>
+      <div class="meta">
+        <span class="tag kz">KZ</span>
+        <span class="tag rating-text">Превосходно</span>
+      </div>
+      
+      <a class="btn" href="https://www.booking.com/hotel/id/pondok-damuh.ru.html" target="_blank" rel="noopener">Смотреть на Booking.com →</a>
+    </div>
+  </div>
+
+  <div class="card">
+    
+    <div class="card-img-wrap">
+      <img class="card-img" src="https://cf.bstatic.com/xdata/images/hotel/max1024x768/386966804.jpg?k=85609b09602a65be0d6bf7f579f19ec6581569136181c29e3a8232be5077d5cd&o=" alt="Byasa Ubud" loading="lazy" onerror="this.src='https://placehold.co/600x400/1a1b23/475569?text=🏨'">
+      <div class="rating-pill" style="background:#22c55e">9.5</div>
+    </div>
+    <div class="card-body">
+      <h3>Byasa Ubud</h3>
+      <div class="meta">
+        <span class="tag kz">KZ</span>
+        <span class="tag rating-text">Превосходно</span>
+      </div>
+      
+      <a class="btn" href="https://www.booking.com/hotel/id/byasa-ubud.ru.html" target="_blank" rel="noopener">Смотреть на Booking.com →</a>
+    </div>
+  </div>
+
+  <div class="card">
+    
+    <div class="card-img-wrap">
+      <img class="card-img" src="https://cf.bstatic.com/xdata/images/hotel/max1024x768/141377893.jpg?k=704e439bf4f78e2c046f4a9a16ee1ef153d2b6ae92d6171c260ec21b7708a2c9&o=" alt="Taman Amartha Hotel" loading="lazy" onerror="this.src='https://placehold.co/600x400/1a1b23/475569?text=🏨'">
+      <div class="rating-pill" style="background:#4ade80">9.2</div>
+    </div>
+    <div class="card-body">
+      <h3>Taman Amartha Hotel</h3>
+      <div class="meta">
+        <span class="tag kz">KZ</span>
+        <span class="tag rating-text">Отлично</span>
+      </div>
+      
+      <a class="btn" href="https://www.booking.com/hotel/id/taman-amartha.ru.html" target="_blank" rel="noopener">Смотреть на Booking.com →</a>
+    </div>
+  </div>
+
+  <div class="card">
+    
+    <div class="card-img-wrap">
+      <img class="card-img" src="https://cf.bstatic.com/xdata/images/hotel/max1024x768/681072992.jpg?k=88d84c2c9ea4d529d57faa885d96fb8f64a8304b5f146fd34a0046c252befd27&o=" alt="Eveuss Romantic Riverside" loading="lazy" onerror="this.src='https://placehold.co/600x400/1a1b23/475569?text=🏨'">
+      <div class="rating-pill" style="background:#4ade80">9.2</div>
+    </div>
+    <div class="card-body">
+      <h3>Eveuss Romantic Riverside</h3>
+      <div class="meta">
+        <span class="tag kz">KZ</span>
+        <span class="tag rating-text">Отлично</span>
+      </div>
+      
+      <a class="btn" href="https://www.booking.com/hotel/id/eveuss-villa.ru.html" target="_blank" rel="noopener">Смотреть на Booking.com →</a>
+    </div>
+  </div>
+
+  <div class="card">
+    
+    <div class="card-img-wrap">
+      <img class="card-img" src="https://cf.bstatic.com/xdata/images/hotel/max1024x768/749887146.jpg?k=1be65ec2e5fb2235bfff065cd7c36c576e02fad41f9a872c0eb527f0b5e24329&o=" alt="ONYX PARK RESORT Ubud" loading="lazy" onerror="this.src='https://placehold.co/600x400/1a1b23/475569?text=🏨'">
+      <div class="rating-pill" style="background:#facc15">8.9</div>
+    </div>
+    <div class="card-body">
+      <h3>ONYX PARK RESORT Ubud</h3>
+      <div class="meta">
+        <span class="tag kz">KZ</span>
+        <span class="tag rating-text">Очень хорошо</span>
+      </div>
+      
+      <a class="btn" href="https://www.booking.com/hotel/id/onyx-park-resort-ubud.ru.html" target="_blank" rel="noopener">Смотреть на Booking.com →</a>
+    </div>
+  </div>
+
+  <div class="card">
+    
+    <div class="card-img-wrap">
+      <img class="card-img" src="https://cf.bstatic.com/xdata/images/hotel/max1024x768/807397815.jpg?k=52061ff91eb0482663dbfbb9987d8cc77a31b3b27316086ba5f1e49af794343b&o=" alt="Best Western Premier Agung Resort Ubud" loading="lazy" onerror="this.src='https://placehold.co/600x400/1a1b23/475569?text=🏨'">
+      <div class="rating-pill" style="background:#facc15">8.9</div>
+    </div>
+    <div class="card-body">
+      <h3>Best Western Premier Agung Resort Ubud</h3>
+      <div class="meta">
+        <span class="tag kz">KZ</span>
+        <span class="tag rating-text">Очень хорошо</span>
+      </div>
+      
+      <a class="btn" href="https://www.booking.com/hotel/id/best-western-premier-agung-resort-ubud.ru.html" target="_blank" rel="noopener">Смотреть на Booking.com →</a>
+    </div>
+  </div>
+
+  <div class="card">
+    
+    <div class="card-img-wrap">
+      <img class="card-img" src="https://cf.bstatic.com/xdata/images/hotel/max1024x768/785460390.jpg?k=d4072cdacde4992cd5475aa2c2e6bd41024054671972ccd12e8dfff699ecfd2c&o=" alt="Govala Ubud Villas & SPA" loading="lazy" onerror="this.src='https://placehold.co/600x400/1a1b23/475569?text=🏨'">
+      <div class="rating-pill" style="background:#facc15">8.8</div>
+    </div>
+    <div class="card-body">
+      <h3>Govala Ubud Villas & SPA</h3>
+      <div class="meta">
+        <span class="tag kz">KZ</span>
+        <span class="tag rating-text">Очень хорошо</span>
+      </div>
+      
+      <a class="btn" href="https://www.booking.com/hotel/id/govala-ubud-villa-and-spa.ru.html" target="_blank" rel="noopener">Смотреть на Booking.com →</a>
+    </div>
+  </div>
+
+  <div class="card">
+    
+    <div class="card-img-wrap">
+      <img class="card-img" src="https://cf.bstatic.com/xdata/images/hotel/max1024x768/546773174.jpg?k=89ab738461f5bb5f8e5916026167864773233d2f8d4ede01ba4db80503c33f32&o=" alt="Teba Suci Suite and Villas" loading="lazy" onerror="this.src='https://placehold.co/600x400/1a1b23/475569?text=🏨'">
+      <div class="rating-pill" style="background:#facc15">8.8</div>
+    </div>
+    <div class="card-body">
+      <h3>Teba Suci Suite and Villas</h3>
+      <div class="meta">
+        <span class="tag kz">KZ</span>
+        <span class="tag rating-text">Очень хорошо</span>
+      </div>
+      
+      <a class="btn" href="https://www.booking.com/hotel/id/teba-suci-suite.ru.html" target="_blank" rel="noopener">Смотреть на Booking.com →</a>
+    </div>
+  </div>
+
+  <div class="card">
+    
+    <div class="card-img-wrap">
+      <img class="card-img" src="https://cf.bstatic.com/xdata/images/hotel/max1024x768/224269644.jpg?k=e9e49e25af26110df0ec8d59e84c338c78947bb10ec715599946934defba9d34&o=" alt="Bije Boutique & Gallery" loading="lazy" onerror="this.src='https://placehold.co/600x400/1a1b23/475569?text=🏨'">
+      <div class="rating-pill" style="background:#facc15">8.7</div>
+    </div>
+    <div class="card-body">
+      <h3>Bije Boutique & Gallery</h3>
+      <div class="meta">
+        <span class="tag kz">KZ</span>
+        <span class="tag rating-text">Очень хорошо</span>
+      </div>
+      
+      <a class="btn" href="https://www.booking.com/hotel/id/bije-boutique-amp-gallery.ru.html" target="_blank" rel="noopener">Смотреть на Booking.com →</a>
+    </div>
+  </div>
+
+  <div class="card">
+    
+    <div class="card-img-wrap">
+      <img class="card-img" src="https://cf.bstatic.com/xdata/images/hotel/max1024x768/196651108.jpg?k=cb410d45779f83b6f5a13870f50c780353cc6e1581725803dc12f356e301480e&o=" alt="tanadewa Resort Ubud Bali by Cross Collection" loading="lazy" onerror="this.src='https://placehold.co/600x400/1a1b23/475569?text=🏨'">
+      <div class="rating-pill" style="background:#facc15">8.7</div>
+    </div>
+    <div class="card-body">
+      <h3>tanadewa Resort Ubud Bali by Cross Collection</h3>
+      <div class="meta">
+        <span class="tag kz">KZ</span>
+        <span class="tag rating-text">Очень хорошо</span>
+      </div>
+      
+      <a class="btn" href="https://www.booking.com/hotel/id/tanadewa-resort-amp-spa-ubud.ru.html" target="_blank" rel="noopener">Смотреть на Booking.com →</a>
+    </div>
+  </div>
+
+  <div class="card">
+    
+    <div class="card-img-wrap">
+      <img class="card-img" src="https://cf.bstatic.com/xdata/images/hotel/max1024x768/809069452.jpg?k=5bf4a1508b02d71f168c82ad3c9cf587d2ae347cf85e6f58c3d6942c3a6ce386&o=" alt="Pertiwi Bisma 1" loading="lazy" onerror="this.src='https://placehold.co/600x400/1a1b23/475569?text=🏨'">
+      <div class="rating-pill" style="background:#94a3b8">8.2</div>
+    </div>
+    <div class="card-body">
+      <h3>Pertiwi Bisma 1</h3>
+      <div class="meta">
+        <span class="tag kz">KZ</span>
+        <span class="tag rating-text">Хорошо</span>
+      </div>
+      
+      <a class="btn" href="https://www.booking.com/hotel/id/pertiwi-bisma-1.ru.html" target="_blank" rel="noopener">Смотреть на Booking.com →</a>
+    </div>
+  </div>
+
+  <div class="card">
+    
+    <div class="card-img-wrap">
+      <img class="card-img" src="https://cf.bstatic.com/xdata/images/hotel/max1024x768/767711460.jpg?k=02b80316bc39ca573e737ddef32547f6efff9889b3059bcf17861c25dc7b97e5&o=" alt="Pertiwi Bisma Ubud" loading="lazy" onerror="this.src='https://placehold.co/600x400/1a1b23/475569?text=🏨'">
+      <div class="rating-pill" style="background:#94a3b8">8.2</div>
+    </div>
+    <div class="card-body">
+      <h3>Pertiwi Bisma Ubud</h3>
+      <div class="meta">
+        <span class="tag kz">KZ</span>
+        <span class="tag rating-text">Хорошо</span>
+      </div>
+      
+      <a class="btn" href="https://www.booking.com/hotel/id/pertiwi-bisma-2.ru.html" target="_blank" rel="noopener">Смотреть на Booking.com →</a>
+    </div>
+  </div>
+
+  <div class="card">
+    
+    <div class="card-img-wrap">
+      <img class="card-img" src="https://cf.bstatic.com/xdata/images/hotel/max1024x768/816054623.jpg?k=9477042c61a5d2fb8068208ae2c9e916e35dca44e4df8dcc6f9704aaabc5008c&o=" alt="Jungle Haven Resort Central Ubud" loading="lazy" onerror="this.src='https://placehold.co/600x400/1a1b23/475569?text=🏨'">
+      <div class="rating-pill" style="background:#94a3b8">8.1</div>
+    </div>
+    <div class="card-body">
+      <h3>Jungle Haven Resort Central Ubud</h3>
+      <div class="meta">
+        <span class="tag natasha">Наташа</span>
+        <span class="tag rating-text">Хорошо</span>
+      </div>
+      
+      <a class="btn" href="https://www.booking.com/hotel/id/desak-putu-putera-cottages.ru.html" target="_blank" rel="noopener">Смотреть на Booking.com →</a>
+    </div>
+  </div>
+</div>
+
+<div class="footer">
+  Составлено автоматически · Февраль 2026 · Данные с Booking.com<br>
+  Рейтинги актуальны на момент сбора
+</div>
+
+</body>
+</html>

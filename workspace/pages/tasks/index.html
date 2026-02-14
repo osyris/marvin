@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KZ — Tasks</title>
+    <style>
+        :root {
+            --bg: #0d1117;
+            --card: #161b22;
+            --border: #30363d;
+            --text: #e6edf3;
+            --text-dim: #8b949e;
+            --accent: #58a6ff;
+            --green: #3fb950;
+            --yellow: #d29922;
+            --red: #f85149;
+            --orange: #db6d28;
+            --purple: #bc8cff;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            padding: 1.5rem;
+            max-width: 900px;
+            margin: 0 auto;
+            line-height: 1.5;
+        }
+
+        header {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 2rem;
+            padding-bottom: 1rem;
+            border-bottom: 1px solid var(--border);
+        }
+
+        header h1 {
+            font-size: 1.6rem;
+            font-weight: 600;
+        }
+
+        header .subtitle {
+            color: var(--text-dim);
+            font-size: 0.85rem;
+        }
+
+        .section {
+            margin-bottom: 2rem;
+        }
+
+        .section-title {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: var(--text-dim);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            margin-bottom: 0.75rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .section-title .count {
+            background: var(--border);
+            color: var(--text-dim);
+            font-size: 0.75rem;
+            padding: 0.1rem 0.5rem;
+            border-radius: 10px;
+        }
+
+        .task {
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 1rem 1.2rem;
+            margin-bottom: 0.5rem;
+            transition: border-color 0.2s;
+        }
+
+        .task:hover {
+            border-color: var(--accent);
+        }
+
+        .task-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 0.75rem;
+            margin-bottom: 0.35rem;
+        }
+
+        .task-title {
+            font-weight: 600;
+            font-size: 0.95rem;
+        }
+
+        .tag {
+            font-size: 0.7rem;
+            padding: 0.15rem 0.5rem;
+            border-radius: 12px;
+            font-weight: 500;
+            white-space: nowrap;
+        }
+
+        .tag-business { background: rgba(88, 166, 255, 0.15); color: var(--accent); }
+        .tag-personal { background: rgba(63, 185, 80, 0.15); color: var(--green); }
+        .tag-content { background: rgba(188, 140, 255, 0.15); color: var(--purple); }
+        .tag-sales { background: rgba(219, 109, 40, 0.15); color: var(--orange); }
+
+        .priority-high { border-left: 3px solid var(--red); }
+        .priority-med { border-left: 3px solid var(--yellow); }
+        .priority-low { border-left: 3px solid var(--border); }
+
+        .task-desc {
+            color: var(--text-dim);
+            font-size: 0.85rem;
+        }
+
+        .task-meta {
+            display: flex;
+            gap: 1rem;
+            margin-top: 0.5rem;
+            font-size: 0.75rem;
+            color: var(--text-dim);
+        }
+
+        .subtasks {
+            margin-top: 0.5rem;
+            padding-left: 0.25rem;
+        }
+
+        .subtask {
+            font-size: 0.8rem;
+            color: var(--text-dim);
+            padding: 0.15rem 0;
+        }
+
+        .subtask::before {
+            content: '○ ';
+            color: var(--border);
+        }
+
+        .subtask.done {
+            text-decoration: line-through;
+            opacity: 0.5;
+        }
+
+        .subtask.done::before {
+            content: '● ';
+            color: var(--green);
+        }
+
+        .divider {
+            border: none;
+            border-top: 1px solid var(--border);
+            margin: 2rem 0;
+        }
+
+        .bali-banner {
+            background: linear-gradient(135deg, rgba(88, 166, 255, 0.1), rgba(188, 140, 255, 0.1));
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 0.75rem 1.2rem;
+            margin-bottom: 1.5rem;
+            font-size: 0.85rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .bali-banner strong { color: var(--accent); }
+
+        footer {
+            text-align: center;
+            color: var(--text-dim);
+            font-size: 0.75rem;
+            padding-top: 2rem;
+            border-top: 1px solid var(--border);
+        }
+
+        @media (max-width: 600px) {
+            body { padding: 1rem; }
+            .task-header { flex-wrap: wrap; }
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <div>
+        <h1>📋 KZ Tasks</h1>
+        <div class="subtitle">Обновлено: 14 февраля 2026</div>
+    </div>
+</header>
+
+<div class="bali-banner">
+    ✈️ <strong>Bali через 16 дней</strong> — 2 марта 2026. Успеть до отъезда!
+</div>
+
+<!-- ==================== БИЗНЕС ==================== -->
+<div class="section">
+    <div class="section-title">🚀 Бизнес & Продукт <span class="count">4</span></div>
+
+    <div class="task priority-high">
+        <div class="task-header">
+            <span class="task-title">📞 GoMed — реализовать заказ</span>
+            <span class="tag tag-business">CallVA</span>
+        </div>
+        <div class="task-desc">Одобренный заказ на доработку голосовых роботов. Нужно реализовать.</div>
+        <div class="task-meta"><span>⚡ Высокий приоритет</span><span>💰 Оплачиваемый</span></div>
+    </div>
+
+    <div class="task priority-high">
+        <div class="task-header">
+            <span class="task-title">🌐 Лендинг CallVA (callva.io)</span>
+            <span class="tag tag-business">CallVA</span>
+        </div>
+        <div class="task-desc">Лендинг для платформы оркестрирования голосовых ассистентов.</div>
+    </div>
+
+    <div class="task priority-med">
+        <div class="task-header">
+            <span class="task-title">🌐 Лендинг Amanati</span>
+            <span class="tag tag-business">Amanati</span>
+        </div>
+        <div class="task-desc">White-label CallVA для ниши напоминаний о визитах.</div>
+    </div>
+
+    <div class="task priority-med">
+        <div class="task-header">
+            <span class="task-title">📧 Drip-кампания онбординга CallVA</span>
+            <span class="tag tag-business">CallVA</span>
+        </div>
+        <div class="task-desc">Серия email при регистрации: онбординг → фичи → прогрев → вовлечение.</div>
+    </div>
+</div>
+
+<!-- ==================== ПРОДАЖИ ==================== -->
+<div class="section">
+    <div class="section-title">💼 Продажи & Партнёрства <span class="count">3</span></div>
+
+    <div class="task priority-med">
+        <div class="task-header">
+            <span class="task-title">📱 Tele2 Estonia — предложение</span>
+            <span class="tag tag-sales">Outreach</span>
+        </div>
+        <div class="task-desc">Связаться и предложить CallVA: прозвон клиентов, выяснение причин заявок на обратный звонок.</div>
+    </div>
+
+    <div class="task priority-med">
+        <div class="task-header">
+            <span class="task-title">🎤 Latitude 59 — промо CallVA</span>
+            <span class="tag tag-sales">Event</span>
+        </div>
+        <div class="task-desc">Стартап-конференция, Эстония, май 2026. Получить слот на выступление/демо.</div>
+        <div class="subtasks">
+            <div class="subtask">Связаться с контактом</div>
+            <div class="subtask">Продумать: что именно хочу получить</div>
+            <div class="subtask">Подготовить предложение</div>
+        </div>
+    </div>
+
+    <div class="task priority-low">
+        <div class="task-header">
+            <span class="task-title">🤖 OpenClaw для Дмитрия</span>
+            <span class="tag tag-sales">Партнёрство</span>
+        </div>
+        <div class="task-desc">Первый совместный проект с Сергеем. Настроить AI-агента для клиента Дмитрия.</div>
+        <div class="task-meta"><span>Сергей ответил — нужно посмотреть</span></div>
+    </div>
+</div>
+
+<!-- ==================== КОНТЕНТ ==================== -->
+<div class="section">
+    <div class="section-title">📢 Контент & Маркетинг <span class="count">2</span></div>
+
+    <div class="task priority-med">
+        <div class="task-header">
+            <span class="task-title">🎬 Контент-стратегия</span>
+            <span class="tag tag-content">Контент</span>
+        </div>
+        <div class="task-desc">YouTube ↔ Telegram ↔ LinkedIn ↔ Email. Активный старт скоро.</div>
+    </div>
+
+    <div class="task priority-low">
+        <div class="task-header">
+            <span class="task-title">🔍 Исследование Skool-комьюнити</span>
+            <span class="tag tag-content">Research</span>
+        </div>
+        <div class="task-desc">Отскрейпить AI/automation группы на Skool. Понять структуру для создания своей.</div>
+    </div>
+</div>
+
+<!-- ==================== ЛИЧНОЕ ==================== -->
+<div class="section">
+    <div class="section-title">🏠 Личное <span class="count">3</span></div>
+
+    <div class="task priority-med">
+        <div class="task-header">
+            <span class="task-title">🦷 Записаться к зубному</span>
+            <span class="tag tag-personal">Здоровье</span>
+        </div>
+        <div class="task-desc">Постоянный стоматолог в отпуске до конца марта. Варианты: ждать апрель или сходить к другому до Bali.</div>
+        <div class="task-meta"><span>🔔 Ежедневное напоминание</span></div>
+    </div>
+
+    <div class="task priority-med">
+        <div class="task-header">
+            <span class="task-title">📄 Счета бухгалтеру</span>
+            <span class="tag tag-personal">Финансы</span>
+        </div>
+        <div class="task-desc">Предоставить счета. Регулярная задача.</div>
+        <div class="task-meta"><span>🔔 Ежедневное напоминание</span></div>
+    </div>
+
+    <div class="task priority-low">
+        <div class="task-header">
+            <span class="task-title">🔧 Наташин OpenClaw — фикс конфига</span>
+            <span class="tag tag-personal">Tech</span>
+        </div>
+        <div class="task-desc">Добавить nataliakatsalukha.com в allowedOrigins, почистить env vars в Railway.</div>
+    </div>
+</div>
+
+<footer>
+    Сгенерировано Марвином 🤖 • Данные из memory/tasks.md + MEMORY.md
+</footer>
+
+</body>
+</html>

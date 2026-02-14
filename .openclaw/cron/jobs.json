@@ -1,0 +1,112 @@
+{
+  "version": 1,
+  "jobs": [
+    {
+      "id": "9e2c149a-2329-43a9-be3d-c64d81cc998e",
+      "agentId": "main",
+      "name": "Напоминание: ДР мамы через месяц",
+      "enabled": true,
+      "deleteAfterRun": true,
+      "createdAtMs": 1770470705239,
+      "updatedAtMs": 1770470705239,
+      "schedule": {
+        "kind": "at",
+        "at": "2026-09-03T06:00:00.000Z"
+      },
+      "sessionTarget": "isolated",
+      "wakeMode": "next-heartbeat",
+      "payload": {
+        "kind": "agentTurn",
+        "message": "Напомни KZ в Telegram: '🎂 Через месяц, 3 октября, день рождения мамы Веры Николаевны! Ей исполнится 75 лет. Самое время подумать о подарке!'"
+      },
+      "delivery": {
+        "mode": "announce"
+      },
+      "state": {
+        "nextRunAtMs": 1788415200000
+      }
+    },
+    {
+      "id": "45fbb048-a49b-4482-b8e5-173c441f4628",
+      "agentId": "main",
+      "name": "Напоминание: записаться к зубному",
+      "enabled": true,
+      "createdAtMs": 1770499662340,
+      "updatedAtMs": 1771056020924,
+      "schedule": {
+        "kind": "cron",
+        "expr": "0 10 * * *",
+        "tz": "Europe/Tallinn"
+      },
+      "sessionTarget": "isolated",
+      "wakeMode": "next-heartbeat",
+      "payload": {
+        "kind": "agentTurn",
+        "message": "Напомни KZ в Telegram: '🦷 Привет! Ты записался к зубному? До Бали (2 марта) осталось мало времени — не забудь записаться!' Если KZ уже подтвердил что записался — проверь файл memory/2026-02-07.md, там должна быть пометка. Если пометка есть — не напоминай, просто скажи что задача выполнена."
+      },
+      "delivery": {
+        "mode": "announce"
+      },
+      "state": {
+        "nextRunAtMs": 1771142400000,
+        "lastRunAtMs": 1771056000021,
+        "lastStatus": "ok",
+        "lastDurationMs": 20903,
+        "consecutiveErrors": 0
+      }
+    },
+    {
+      "id": "b7c3d1e2-4f5a-6b7c-8d9e-0f1a2b3c4d5e",
+      "agentId": "main",
+      "name": "Напоминание: счета бухгалтеру",
+      "enabled": false,
+      "createdAtMs": 1770565000000,
+      "updatedAtMs": 1770890508542,
+      "schedule": {
+        "kind": "cron",
+        "expr": "0 12 * * *",
+        "tz": "Asia/Makassar"
+      },
+      "sessionTarget": "isolated",
+      "wakeMode": "next-heartbeat",
+      "payload": {
+        "kind": "agentTurn",
+        "message": "Напомни KZ в Telegram: '📄 Привет! Не забудь предоставить счета бухгалтеру! Ты уже это сделал?'"
+      },
+      "delivery": {
+        "mode": "announce"
+      },
+      "state": {
+        "lastRunAtMs": 1770890400032,
+        "lastStatus": "ok",
+        "lastDurationMs": 9934,
+        "consecutiveErrors": 0
+      }
+    },
+    {
+      "id": "d37dec9a-e20f-4e59-856a-c26123585236",
+      "agentId": "main",
+      "name": "Включить напоминание: счета бухгалтеру",
+      "enabled": true,
+      "deleteAfterRun": true,
+      "createdAtMs": 1770890516269,
+      "updatedAtMs": 1770890516269,
+      "schedule": {
+        "kind": "at",
+        "at": "2026-03-10T03:55:00.000Z"
+      },
+      "sessionTarget": "isolated",
+      "wakeMode": "now",
+      "payload": {
+        "kind": "agentTurn",
+        "message": "Включи крон-джоб b7c3d1e2-4f5a-6b7c-8d9e-0f1a2b3c4d5e (напоминание про счета бухгалтеру). Используй cron tool: action=update, jobId=b7c3d1e2-4f5a-6b7c-8d9e-0f1a2b3c4d5e, patch={enabled:true}. После включения отправь KZ в Telegram: '📄 Привет! С сегодняшнего дня снова напоминаю про счета бухгалтеру. Не забудь!'"
+      },
+      "delivery": {
+        "mode": "announce"
+      },
+      "state": {
+        "nextRunAtMs": 1773114900000
+      }
+    }
+  ]
+}

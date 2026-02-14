@@ -1,0 +1,35 @@
+# === OpenClaw secrets & state ===
+.openclaw/openclaw.json
+.openclaw/openclaw.json.bak*
+.openclaw/.env
+.openclaw/credentials/
+.openclaw/agents/*/agent/auth-profiles.json
+.openclaw/identity/
+.openclaw/devices/
+.openclaw/browser/
+.openclaw/media/
+.openclaw/delivery-queue/
+.openclaw/subagents/
+.openclaw/telegram/
+
+# Sessions (transcripts, locks, state)
+.openclaw/agents/*/sessions/
+
+# Other openclaw temp/state
+.openclaw/filebrowser.db
+.openclaw/update-check.json
+.openclaw/canvas/
+
+# === Workspace secrets & temp ===
+workspace/memory/booking-session.json
+
+# Node modules
+workspace/node_modules/
+workspace/package-lock.json
+
+# Workspace transcript files (leaked from old config)
+workspace/*.jsonl
+
+# OS junk
+.DS_Store
+Thumbs.db
