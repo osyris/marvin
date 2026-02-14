@@ -1,0 +1,144 @@
+{
+  "meta": {
+    "lastTouchedVersion": "2026.2.13",
+    "lastTouchedAt": "2026-02-13T17:55:20.625Z"
+  },
+  "wizard": {
+    "lastRunAt": "2026-02-08T19:39:25.415Z",
+    "lastRunVersion": "2026.2.6-3",
+    "lastRunCommand": "doctor",
+    "lastRunMode": "local"
+  },
+  "auth": {
+    "profiles": {
+      "anthropic:default": {
+        "provider": "anthropic",
+        "mode": "token"
+      }
+    }
+  },
+  "agents": {
+    "defaults": {
+      "workspace": "/data/workspace",
+      "contextPruning": {
+        "mode": "cache-ttl",
+        "ttl": "1h"
+      },
+      "compaction": {
+        "mode": "safeguard"
+      },
+      "heartbeat": {
+        "every": "30m"
+      },
+      "maxConcurrent": 4,
+      "subagents": {
+        "maxConcurrent": 8
+      },
+      "sandbox": {
+        "browser": {
+          "enabled": true
+        },
+        "mode": "off"
+      }
+    },
+    "list": [
+      {
+        "id": "main",
+        "subagents": {
+          "allowAgents": ["*"]
+        }
+      }
+    ]
+  },
+  "tools": {
+    "web": {
+      "search": {
+        "provider": "brave",
+        "apiKey": "<<BRAVE_API_KEY>>"
+      }
+    },
+    "media": {
+      "audio": {
+        "enabled": true,
+        "providerOptions": {
+          "deepgram": {
+            "smart_format": true,
+            "detectLanguage": true,
+            "punctuate": true
+          }
+        },
+        "models": [
+          {
+            "provider": "deepgram",
+            "model": "nova-3",
+            "deepgram": {
+              "detectLanguage": true
+            }
+          }
+        ]
+      }
+    }
+  },
+  "messages": {
+    "ackReactionScope": "group-mentions"
+  },
+  "commands": {
+    "native": "auto",
+    "nativeSkills": "auto",
+    "restart": true
+  },
+  "cron": {
+    "enabled": true,
+    "maxConcurrentRuns": 3
+  },
+  "channels": {
+    "telegram": {
+      "dmPolicy": "pairing",
+      "botToken": "<<TELEGRAM_BOT_TOKEN>>",
+      "groups": {
+        "-1003756512238": {
+          "requireMention": false,
+          "groupPolicy": "open"
+        }
+      },
+      "allowFrom": ["535123867"],
+      "groupAllowFrom": ["535123867"],
+      "groupPolicy": "allowlist",
+      "chunkMode": "length",
+      "streamMode": "partial",
+      "actions": {
+        "sendMessage": true
+      }
+    }
+  },
+  "gateway": {
+    "port": 8082,
+    "bind": "loopback",
+    "trustedProxies": ["127.0.0.1"],
+    "controlUi": {
+      "enabled": true,
+      "basePath": "/dashboard",
+      "allowInsecureAuth": true,
+      "dangerouslyDisableDeviceAuth": true,
+      "allowedOrigins": ["https://marvin.konzhi.com"]
+    },
+    "auth": {
+      "mode": "token",
+      "token": "<<GATEWAY_AUTH_TOKEN>>"
+    }
+  },
+  "plugins": {
+    "entries": {
+      "telegram": {
+        "enabled": true
+      }
+    }
+  },
+  "browser": {
+    "enabled": true,
+    "headless": true,
+    "noSandbox": true,
+    "defaultProfile": "openclaw",
+    "executablePath": "/usr/bin/chromium"
+  }
+}

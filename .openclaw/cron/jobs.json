@@ -107,6 +107,31 @@
       "state": {
         "nextRunAtMs": 1773114900000
       }
+    },
+    {
+      "id": "80b6b73a-f5d2-45ab-9344-6ba7f264393f",
+      "agentId": "main",
+      "name": "Daily git backup (3:00 AM Tallinn)",
+      "enabled": true,
+      "createdAtMs": 1771077110796,
+      "updatedAtMs": 1771077110796,
+      "schedule": {
+        "kind": "cron",
+        "expr": "0 0 * * *",
+        "tz": "Europe/Tallinn"
+      },
+      "sessionTarget": "isolated",
+      "wakeMode": "now",
+      "payload": {
+        "kind": "agentTurn",
+        "message": "Выполни ежедневный git backup: cd /data && git add -A && git diff --cached --quiet || (git commit -m \"daily backup $(date +%Y-%m-%d)\" && git push origin main). Если нечего коммитить — просто скажи что нет изменений. Не нужно отправлять сообщение KZ."
+      },
+      "delivery": {
+        "mode": "none"
+      },
+      "state": {
+        "nextRunAtMs": 1771106400000
+      }
     }
   ]
 }

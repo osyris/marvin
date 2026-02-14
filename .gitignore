@@ -1,5 +1,6 @@
 # === OpenClaw secrets & state ===
 .openclaw/openclaw.json
+!.openclaw/openclaw.sanitized.json
 .openclaw/openclaw.json.bak*
 .openclaw/.env
 .openclaw/credentials/
@@ -29,6 +30,10 @@ workspace/package-lock.json
 
 # Workspace transcript files (leaked from old config)
 workspace/*.jsonl
+
+# SSH private key (public + setup ok)
+.ssh/marvin_deploy
+.ssh/known_hosts*
 
 # OS junk
 .DS_Store
