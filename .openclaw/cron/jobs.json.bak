@@ -29,32 +29,30 @@
     {
       "id": "45fbb048-a49b-4482-b8e5-173c441f4628",
       "agentId": "main",
-      "name": "Напоминание: записаться к зубному",
+      "name": "Напоминание: записаться к зубному (после Bali)",
       "enabled": true,
       "createdAtMs": 1770499662340,
-      "updatedAtMs": 1771142415208,
+      "updatedAtMs": 1771255833100,
       "schedule": {
-        "kind": "cron",
-        "expr": "0 10 * * *",
-        "tz": "Europe/Tallinn"
+        "kind": "at",
+        "at": "2026-03-25T02:00:00.000Z"
       },
       "sessionTarget": "isolated",
       "wakeMode": "next-heartbeat",
       "payload": {
         "kind": "agentTurn",
-        "message": "Напомни KZ в Telegram: '🦷 Привет! Ты записался к зубному? До Бали (2 марта) осталось мало времени — не забудь записаться!' Если KZ уже подтвердил что записался — проверь файл memory/2026-02-07.md, там должна быть пометка. Если пометка есть — не напоминай, просто скажи что задача выполнена."
+        "message": "Напомни KZ в Telegram: '🦷 Привет! Ты вернулся с Bali — пора записаться к зубному! Твой стоматолог должен был вернуться из отпуска. Запишись на приём в апреле.'"
       },
       "delivery": {
         "mode": "announce"
       },
       "state": {
-        "nextRunAtMs": 1771228800000,
-        "lastRunAtMs": 1771142400018,
-        "lastStatus": "error",
-        "lastDurationMs": 15190,
-        "consecutiveErrors": 1,
-        "lastError": "cron announce delivery failed"
-      }
+        "lastRunAtMs": 1771228800009,
+        "lastStatus": "ok",
+        "lastDurationMs": 29792,
+        "consecutiveErrors": 0
+      },
+      "deleteAfterRun": true
     },
     {
       "id": "b7c3d1e2-4f5a-6b7c-8d9e-0f1a2b3c4d5e",
@@ -115,7 +113,7 @@
       "name": "Daily git backup (3:00 AM Tallinn)",
       "enabled": true,
       "createdAtMs": 1771077110796,
-      "updatedAtMs": 1771106407576,
+      "updatedAtMs": 1771192808675,
       "schedule": {
         "kind": "cron",
         "expr": "0 0 * * *",
@@ -131,12 +129,12 @@
         "mode": "none"
       },
       "state": {
-        "nextRunAtMs": 1771192800000,
-        "lastRunAtMs": 1771106400038,
+        "nextRunAtMs": 1771279200000,
+        "lastRunAtMs": 1771192800028,
         "lastStatus": "ok",
-        "lastDurationMs": 7538,
+        "lastDurationMs": 8647,
         "consecutiveErrors": 0,
-        "runningAtMs": 1771192800016
+        "runningAtMs": 1771279200014
       }
     }
   ]
