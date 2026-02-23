@@ -8,7 +8,7 @@
       "enabled": true,
       "deleteAfterRun": true,
       "createdAtMs": 1770470705239,
-      "updatedAtMs": 1770470705239,
+      "updatedAtMs": 1771834819425,
       "schedule": {
         "kind": "at",
         "at": "2026-09-03T06:00:00.000Z"
@@ -17,10 +17,13 @@
       "wakeMode": "next-heartbeat",
       "payload": {
         "kind": "agentTurn",
-        "message": "Напомни KZ в Telegram: '🎂 Через месяц, 3 октября, день рождения мамы Веры Николаевны! Ей исполнится 75 лет. Самое время подумать о подарке!'"
+        "message": "🎂 Через месяц, 3 октября, день рождения мамы Веры Николаевны! Ей исполнится 75 лет. Самое время подумать о подарке!"
       },
       "delivery": {
-        "mode": "announce"
+        "mode": "announce",
+        "channel": "telegram",
+        "to": "telegram:535123867",
+        "bestEffort": true
       },
       "state": {
         "nextRunAtMs": 1788415200000
@@ -32,7 +35,7 @@
       "name": "Напоминание: записаться к зубному (после Bali)",
       "enabled": true,
       "createdAtMs": 1770499662340,
-      "updatedAtMs": 1771255833100,
+      "updatedAtMs": 1771834819353,
       "schedule": {
         "kind": "at",
         "at": "2026-03-25T02:00:00.000Z"
@@ -41,10 +44,13 @@
       "wakeMode": "next-heartbeat",
       "payload": {
         "kind": "agentTurn",
-        "message": "Напомни KZ в Telegram: '🦷 Привет! Ты вернулся с Bali — пора записаться к зубному! Твой стоматолог должен был вернуться из отпуска. Запишись на приём в апреле.'"
+        "message": "🦷 Привет! Ты вернулся с Bali — пора записаться к зубному! Твой стоматолог должен был вернуться из отпуска. Запишись на приём в апреле."
       },
       "delivery": {
-        "mode": "announce"
+        "mode": "announce",
+        "channel": "telegram",
+        "to": "telegram:535123867",
+        "bestEffort": true
       },
       "state": {
         "lastRunAtMs": 1771228800009,
@@ -60,7 +66,7 @@
       "name": "Напоминание: счета бухгалтеру",
       "enabled": false,
       "createdAtMs": 1770565000000,
-      "updatedAtMs": 1770890508542,
+      "updatedAtMs": 1771834819379,
       "schedule": {
         "kind": "cron",
         "expr": "0 12 * * *",
@@ -70,10 +76,13 @@
       "wakeMode": "next-heartbeat",
       "payload": {
         "kind": "agentTurn",
-        "message": "Напомни KZ в Telegram: '📄 Привет! Не забудь предоставить счета бухгалтеру! Ты уже это сделал?'"
+        "message": "📄 Привет! Не забудь предоставить счета бухгалтеру! Ты уже это сделал?"
       },
       "delivery": {
-        "mode": "announce"
+        "mode": "announce",
+        "channel": "telegram",
+        "to": "telegram:535123867",
+        "bestEffort": true
       },
       "state": {
         "lastRunAtMs": 1770890400032,
@@ -89,7 +98,7 @@
       "enabled": true,
       "deleteAfterRun": true,
       "createdAtMs": 1770890516269,
-      "updatedAtMs": 1770890516269,
+      "updatedAtMs": 1771834819399,
       "schedule": {
         "kind": "at",
         "at": "2026-03-10T03:55:00.000Z"
@@ -101,7 +110,10 @@
         "message": "Включи крон-джоб b7c3d1e2-4f5a-6b7c-8d9e-0f1a2b3c4d5e (напоминание про счета бухгалтеру). Используй cron tool: action=update, jobId=b7c3d1e2-4f5a-6b7c-8d9e-0f1a2b3c4d5e, patch={enabled:true}. После включения отправь KZ в Telegram: '📄 Привет! С сегодняшнего дня снова напоминаю про счета бухгалтеру. Не забудь!'"
       },
       "delivery": {
-        "mode": "announce"
+        "mode": "announce",
+        "channel": "telegram",
+        "to": "telegram:535123867",
+        "bestEffort": true
       },
       "state": {
         "nextRunAtMs": 1773114900000
@@ -113,7 +125,7 @@
       "name": "Daily git backup (3:00 AM Tallinn)",
       "enabled": true,
       "createdAtMs": 1771077110796,
-      "updatedAtMs": 1771711208006,
+      "updatedAtMs": 1771797608642,
       "schedule": {
         "kind": "cron",
         "expr": "0 0 * * *",
@@ -129,12 +141,13 @@
         "mode": "none"
       },
       "state": {
-        "nextRunAtMs": 1771797600000,
-        "lastRunAtMs": 1771711200011,
+        "nextRunAtMs": 1771884000000,
+        "lastRunAtMs": 1771797600012,
         "lastStatus": "ok",
-        "lastDurationMs": 7995,
+        "lastDurationMs": 8630,
         "consecutiveErrors": 0,
-        "runningAtMs": 1771797600008
+        "lastDelivered": false,
+        "runningAtMs": 1771884000008
       }
     },
     {
@@ -163,6 +176,38 @@
         "lastStatus": "error",
         "lastDurationMs": 2408,
         "lastError": "cron delivery target is missing",
+        "consecutiveErrors": 1
+      }
+    },
+    {
+      "id": "de16f802-138e-414c-b337-e6bddf524daa",
+      "agentId": "main",
+      "sessionKey": "agent:main:main",
+      "name": "Тест напоминания",
+      "enabled": false,
+      "deleteAfterRun": true,
+      "createdAtMs": 1771834167405,
+      "updatedAtMs": 1771834288426,
+      "schedule": {
+        "kind": "at",
+        "at": "2026-02-23T08:11:00.000Z"
+      },
+      "sessionTarget": "isolated",
+      "wakeMode": "now",
+      "payload": {
+        "kind": "agentTurn",
+        "message": "Отправь KZ в Telegram: '🔔 Тестовое напоминание! Cron работает, доставка в Telegram ок.'"
+      },
+      "delivery": {
+        "mode": "announce",
+        "channel": "telegram",
+        "to": "telegram:535123867"
+      },
+      "state": {
+        "lastRunAtMs": 1771834260016,
+        "lastStatus": "error",
+        "lastDurationMs": 28410,
+        "lastError": "cron announce delivery failed",
         "consecutiveErrors": 1
       }
     }

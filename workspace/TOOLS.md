@@ -45,6 +45,25 @@ Then respond to the content in a follow-up message.
 
 Add whatever helps you do your job. This is your cheat sheet.
 
+## Runtime Environment
+
+- **Python:** 3.11.2 (`/usr/bin/python3`)
+- **uv:** 0.10.4 (`/root/.local/bin/uv`) — для venvs и пакетов
+- **exec policy:** `security=full`, `ask=off` — полный доступ к CLI без подтверждений (настроено в Docker entrypoint)
+
+---
+
+## GitHub — инфра-репо OpenClaw
+
+- **Repo:** `https://github.com/callva-one/openclaw.git`
+- **Token:** хранится в `openclaw.json` → `env.GITHUB_PAT`
+- **Локальная копия:** `/tmp/openclaw-infra/` (не переживает рестарт контейнера)
+- **Восстановление:** если `/tmp/openclaw-infra/` нет — склонировать:
+  ```
+  git clone https://${GITHUB_PAT}@github.com/callva-one/openclaw.git /tmp/openclaw-infra
+  ```
+- Используется только для референса, не для работы.
+
 ---
 
 ## Email (IMAP)
@@ -53,4 +72,5 @@ Add whatever helps you do your job. This is your cheat sheet.
 - **Server:** mail.amanati.ai
 - **Port:** 993 (TLS)
 - **Username:** konstantin@amanati.ai
+- **Password:** хранится в `openclaw.json` → `env.IMAP_PASSWORD`
 - **Protocol:** IMAP (Dovecot)
