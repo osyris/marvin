@@ -125,7 +125,7 @@
       "name": "Daily git backup (3:00 AM Tallinn)",
       "enabled": true,
       "createdAtMs": 1771077110796,
-      "updatedAtMs": 1772143209212,
+      "updatedAtMs": 1772229610137,
       "schedule": {
         "kind": "cron",
         "expr": "0 0 * * *",
@@ -141,15 +141,15 @@
         "mode": "none"
       },
       "state": {
-        "nextRunAtMs": 1772229600000,
-        "lastRunAtMs": 1772143200029,
+        "nextRunAtMs": 1772316000000,
+        "lastRunAtMs": 1772229600023,
         "lastStatus": "ok",
-        "lastDurationMs": 9183,
+        "lastDurationMs": 10114,
         "consecutiveErrors": 0,
         "lastDelivered": false,
         "lastRunStatus": "ok",
         "lastDeliveryStatus": "not-delivered",
-        "runningAtMs": 1772229600016
+        "runningAtMs": 1772316000006
       }
     },
     {

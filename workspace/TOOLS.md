@@ -74,3 +74,10 @@ Add whatever helps you do your job. This is your cheat sheet.
 - **Username:** konstantin@amanati.ai
 - **Password:** хранится в `openclaw.json` → `env.IMAP_PASSWORD`
 - **Protocol:** IMAP (Dovecot)
+
+### konstantin@callva.one *(Google Workspace)*
+- **Server:** imap.gmail.com
+- **Port:** 993 (TLS)
+- **Username:** konstantin@callva.one
+- **Auth:** App Password
+- **Password:** хранится в `openclaw.json` → `env.IMAP_PASSWORD_COLVA`
