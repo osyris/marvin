@@ -12,27 +12,6 @@ Things like:
 - Device nicknames
 - Anything environment-specific
 
-## Examples
-
-```markdown
-### Cameras
-- living-room → Main area, 180° wide angle
-- front-door → Entrance, motion-triggered
-
-### SSH
-- home-server → 192.168.1.100, user: admin
-
-### TTS
-- Preferred voice: "Nova" (warm, slightly British)
-- Default speaker: Kitchen HomePod
-```
-
-## Why Separate?
-
-Skills are shared. Your setup is yours. Keeping them apart means you can update skills without losing your notes, and share skills without leaking your infrastructure.
-
----
-
 ## Voice Messages
 
 When KZ sends a voice message, first reply with:
@@ -40,6 +19,11 @@ When KZ sends a voice message, first reply with:
 You said: [transcript]
 ```
 Then respond to the content in a follow-up message.
+
+## Email — правила
+
+- **Драфты по умолчанию:** Когда KZ просит подготовить ответ на email (или написать письмо) — это **всегда только драфт**, если он явно не говорит «отправляй». Показать текст, дождаться чёткого подтверждения («отправляй», «ок, шли») → только тогда отправлять.
+- Никогда не отправлять email без явного подтверждения KZ.
 
 ---
 
@@ -72,7 +56,7 @@ Add whatever helps you do your job. This is your cheat sheet.
 - **Server:** mail.amanati.ai
 - **Port:** 993 (TLS)
 - **Username:** konstantin@amanati.ai
-- **Password:** хранится в `openclaw.json` → `env.IMAP_PASSWORD`
+- **Password:** хранится в `openclaw.json` → `env.IMAP_PASSWORD_KONSTANTIN_AMANATI`
 - **Protocol:** IMAP (Dovecot)
 
 ### konstantin@callva.one *(Google Workspace)*
@@ -80,4 +64,4 @@ Add whatever helps you do your job. This is your cheat sheet.
 - **Port:** 993 (TLS)
 - **Username:** konstantin@callva.one
 - **Auth:** App Password
-- **Password:** хранится в `openclaw.json` → `env.IMAP_PASSWORD_COLVA`
+- **Password:** хранится в `openclaw.json` → `env.IMAP_PASSWORD_KONSTANTIN_CALLVA`

@@ -48,6 +48,16 @@
 - Арина (дочь KZ): подарки/нужды → memory/arina-notes.md  
 - Мама Вера: нужды → memory/mama-vera-notes.md
 
+## Reflections (дневник рефлексий)
+
+Хранится в `memory/reflections/`, по тематическим файлам:
+- `memory/reflections/natasha.md` — отношения с Наташей (личное, динамика, инсайты)
+- `memory/reflections/health.md` — здоровье, самочувствие, привычки
+- `memory/reflections/business.md` — бизнес-рефлексии, решения, уроки
+- `memory/reflections/personal.md` — личное, мировоззрение, цели
+
+**Как искать:** memory_search → найдёт тему здесь → memory_get читает нужный файл напрямую.
+
 ## Сохранённые файлы
 - `memory/business-concept.md` — полная концепция бизнеса KZ
 - `memory/bali-hotels.md` — список отелей для Bali'26
