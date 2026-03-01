@@ -42,6 +42,9 @@
     <div class="item" id="i-t2"><input type="checkbox" id="t2"><label for="t2">Съездить в магазин шмоток — футболки, шорты</label></div>
     <div class="item" id="i-t3"><input type="checkbox" id="t3"><label for="t3">Найти чемодан большой 23 кг — онлайн + самовывоз<span class="badge b-yellow">срочно</span></label></div>
     <div class="item" id="i-t4"><input type="checkbox" id="t4"><label for="t4">Написать клиенту зубной (Hambapol) — обновления робота + я на Bali до 31 марта</label></div>
+    <div class="item" id="i-t4a"><input type="checkbox" id="t4a"><label for="t4a">💸 Оплатить аренду квартиры</label></div>
+    <div class="item" id="i-t4b"><input type="checkbox" id="t4b"><label for="t4b">💸 Перевести деньги на рынок</label></div>
+    <div class="item" id="i-t4c"><input type="checkbox" id="t4c"><label for="t4c">💸 Перевести деньги маме (Вера, +372 556 15 087)</label></div>
   </div>
 
   <div class="section">
@@ -51,6 +54,7 @@
     <div class="item" id="i-t7"><input type="checkbox" id="t7"><label for="t7">Забрать из офиса: телевизор + рабочее кресло</label></div>
     <div class="item" id="i-t8"><input type="checkbox" id="t8"><label for="t8">Сдать карту-пропуск и ключ от офиса</label></div>
     <div class="item" id="i-t9"><input type="checkbox" id="t9"><label for="t9">Барбер ~11:00</label></div>
+    <div class="item" id="i-t9a"><input type="checkbox" id="t9a"><label for="t9a">🧔 Tradehouse — краска для бороды</label></div>
   </div>
 
   <div class="section">
@@ -80,7 +84,7 @@
 </div>
 
 <script>
-  const ids=['t1','t2','t3','t4','t5','t6','t7','t8','t9','t10','t11','t12','t13','t14','t15','t16','t17','t18','t19','t20'];
+  const ids=['t1','t2','t3','t4','t4a','t4b','t4c','t5','t6','t7','t8','t9','t9a','t10','t11','t12','t13','t14','t15','t16','t17','t18','t19','t20'];
   const saved=JSON.parse(localStorage.getItem('bali2026v2')||'{}');
   ids.forEach(id=>{
     const el=document.getElementById(id);
