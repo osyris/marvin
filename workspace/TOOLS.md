@@ -14,16 +14,27 @@ Things like:
 
 ## Voice Messages
 
-When KZ sends a voice message, first reply with:
-```
-You said: [transcript]
-```
-Then respond to the content in a follow-up message.
+OpenClaw автоматически отправляет транскрипцию голосового перед ответом (echoTranscript: true). Дублировать транскрипт в ответе не нужно — просто отвечай по содержанию.
 
 ## Email — правила
 
 - **Драфты по умолчанию:** Когда KZ просит подготовить ответ на email (или написать письмо) — это **всегда только драфт**, если он явно не говорит «отправляй». Показать текст, дождаться чёткого подтверждения («отправляй», «ок, шли») → только тогда отправлять.
 - Никогда не отправлять email без явного подтверждения KZ.
+- **Сноска AI:** Всегда добавлять перед подписью строку: *«See kiri on koostatud AI-assistendi Marvin poolt Konstantini juhiste alusel.»* (или на языке письма — см. ниже). Ставить до «Parimat» / «Kind regards» / «С уважением».
+  - Эстонский: `See kiri on koostatud AI-assistendi Marvin poolt Konstantini juhiste alusel.`
+  - Английский: `This email was drafted by AI assistant Marvin on Konstantin's instructions.`
+  - Русский: `Это письмо составлено AI-ассистентом Марвин по инструкции Константина.`
+
+### Подпись konstantin@amanati.ai
+```
+Parimat,
+--
+Konstantin Zilin
+"I supercharge businesses with AI" 🚀
+konstantin@amanati.ai
++372 52 58 198
+```
+Использовать эту подпись всегда для писем с этого ящика.
 
 ---
 
