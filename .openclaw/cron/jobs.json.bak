@@ -65,9 +65,9 @@
       "id": "b7c3d1e2-4f5a-6b7c-8d9e-0f1a2b3c4d5e",
       "agentId": "main",
       "name": "Напоминание: счета бухгалтеру",
-      "enabled": false,
+      "enabled": true,
       "createdAtMs": 1770565000000,
-      "updatedAtMs": 1771834819379,
+      "updatedAtMs": 1773201600350,
       "schedule": {
         "kind": "cron",
         "expr": "0 12 * * *",
@@ -86,38 +86,14 @@
         "bestEffort": true
       },
       "state": {
-        "lastRunAtMs": 1770890400032,
-        "lastStatus": "ok",
-        "lastDurationMs": 9934,
-        "consecutiveErrors": 0
-      }
-    },
-    {
-      "id": "d37dec9a-e20f-4e59-856a-c26123585236",
-      "agentId": "main",
-      "name": "Включить напоминание: счета бухгалтеру",
-      "enabled": true,
-      "deleteAfterRun": true,
-      "createdAtMs": 1770890516269,
-      "updatedAtMs": 1771834819399,
-      "schedule": {
-        "kind": "at",
-        "at": "2026-03-10T03:55:00.000Z"
-      },
-      "sessionTarget": "isolated",
-      "wakeMode": "now",
-      "payload": {
-        "kind": "agentTurn",
-        "message": "Включи крон-джоб b7c3d1e2-4f5a-6b7c-8d9e-0f1a2b3c4d5e (напоминание про счета бухгалтеру). Используй cron tool: action=update, jobId=b7c3d1e2-4f5a-6b7c-8d9e-0f1a2b3c4d5e, patch={enabled:true}. После включения отправь KZ в Telegram: '📄 Привет! С сегодняшнего дня снова напоминаю про счета бухгалтеру. Не забудь!'"
-      },
-      "delivery": {
-        "mode": "announce",
-        "channel": "telegram",
-        "to": "telegram:535123867",
-        "bestEffort": true
-      },
-      "state": {
-        "nextRunAtMs": 1773114900000
+        "lastRunAtMs": 1773201600011,
+        "lastStatus": "error",
+        "lastDurationMs": 339,
+        "consecutiveErrors": 2,
+        "nextRunAtMs": 1773288000000,
+        "lastRunStatus": "error",
+        "lastDeliveryStatus": "unknown",
+        "lastError": "FailoverError: OAuth token refresh failed for openai-codex: Failed to refresh OAuth token for openai-codex. Please try again or re-authenticate."
       }
     },
     {
@@ -126,7 +102,7 @@
       "name": "Daily git backup (3:00 AM Tallinn)",
       "enabled": true,
       "createdAtMs": 1771077110796,
-      "updatedAtMs": 1773007213587,
+      "updatedAtMs": 1773180000370,
       "schedule": {
         "kind": "cron",
         "expr": "0 0 * * *",
@@ -142,14 +118,14 @@
         "mode": "none"
       },
       "state": {
-        "nextRunAtMs": 1773093600000,
-        "lastRunAtMs": 1773007200018,
-        "lastStatus": "ok",
-        "lastDurationMs": 13569,
-        "consecutiveErrors": 0,
-        "lastDelivered": false,
-        "lastRunStatus": "ok",
-        "lastDeliveryStatus": "not-delivered"
+        "nextRunAtMs": 1773266400000,
+        "lastRunAtMs": 1773180000012,
+        "lastStatus": "error",
+        "lastDurationMs": 358,
+        "consecutiveErrors": 1,
+        "lastRunStatus": "error",
+        "lastDeliveryStatus": "not-requested",
+        "lastError": "FailoverError: OAuth token refresh failed for openai-codex: Failed to refresh OAuth token for openai-codex. Please try again or re-authenticate."
       }
     },
     {
@@ -246,6 +222,70 @@
         "lastError": "FailoverError: OAuth token refresh failed for openai-codex: Failed to refresh OAuth token for openai-codex. Please try again or re-authenticate.",
         "lastDeliveryStatus": "unknown",
         "consecutiveErrors": 1
+      }
+    },
+    {
+      "id": "a31d1253-d9d7-4d35-a61c-4fde49528863",
+      "agentId": "main",
+      "sessionKey": "agent:main:main",
+      "name": "тест после апдейта",
+      "enabled": false,
+      "deleteAfterRun": true,
+      "createdAtMs": 1773156635736,
+      "updatedAtMs": 1773156780354,
+      "schedule": {
+        "kind": "at",
+        "at": "2026-03-10T15:33:00.000Z"
+      },
+      "sessionTarget": "isolated",
+      "wakeMode": "now",
+      "payload": {
+        "kind": "agentTurn",
+        "message": "🔔 Тест напоминания — проверка доставки в Telegram!"
+      },
+      "delivery": {
+        "mode": "announce",
+        "channel": "telegram",
+        "to": "telegram:535123867",
+        "bestEffort": true
+      },
+      "state": {
+        "lastRunAtMs": 1773156780017,
+        "lastRunStatus": "error",
+        "lastStatus": "error",
+        "lastDurationMs": 337,
+        "lastError": "FailoverError: OAuth token refresh failed for openai-codex: Failed to refresh OAuth token for openai-codex. Please try again or re-authenticate.",
+        "lastDeliveryStatus": "unknown",
+        "consecutiveErrors": 1
+      }
+    },
+    {
+      "id": "fc740644-3e60-414a-ac3e-a64a1b821109",
+      "agentId": "main",
+      "sessionKey": "agent:main:main",
+      "name": "Ретроспектива с Наташей — дата назначена?",
+      "enabled": true,
+      "deleteAfterRun": true,
+      "createdAtMs": 1773204849693,
+      "updatedAtMs": 1773204849693,
+      "schedule": {
+        "kind": "at",
+        "at": "2026-03-20T08:00:00.000Z"
+      },
+      "sessionTarget": "isolated",
+      "wakeMode": "now",
+      "payload": {
+        "kind": "agentTurn",
+        "message": "🗓️ Напоминание для KZ: убедись что назначена дата ретроспективы по отношениям с Наташей!"
+      },
+      "delivery": {
+        "mode": "announce",
+        "channel": "telegram",
+        "to": "telegram:535123867",
+        "bestEffort": true
+      },
+      "state": {
+        "nextRunAtMs": 1773993600000
       }
     }
   ]
