@@ -1,0 +1,930 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>🏝️ Gili Trawangan — план поездки</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      background: #0f0f0f;
+      color: #e0e0e0;
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      padding: 16px;
+      max-width: 720px;
+      margin: 0 auto;
+    }
+
+    header {
+      text-align: center;
+      padding: 32px 16px 24px;
+    }
+
+    header h1 {
+      font-size: 1.9rem;
+      font-weight: 700;
+      color: #fff;
+      line-height: 1.3;
+    }
+
+    header p {
+      margin-top: 10px;
+      color: #aaa;
+      font-size: 0.95rem;
+    }
+
+    .badge {
+      display: inline-block;
+      background: #1e3a5f;
+      color: #5bb3ff;
+      border-radius: 20px;
+      padding: 4px 14px;
+      font-size: 0.8rem;
+      font-weight: 600;
+      margin-top: 10px;
+      letter-spacing: 0.5px;
+    }
+
+    h2 {
+      font-size: 1.15rem;
+      color: #fff;
+      margin: 28px 0 12px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    h2::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: #2a2a2a;
+    }
+
+    .card {
+      background: #1a1a1a;
+      border: 1px solid #2a2a2a;
+      border-radius: 14px;
+      padding: 18px;
+      margin-bottom: 14px;
+      transition: border-color 0.2s;
+    }
+
+    .card:hover { border-color: #3a3a3a; }
+
+    .card-header {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      margin-bottom: 10px;
+    }
+
+    .card-icon {
+      font-size: 2rem;
+      line-height: 1;
+      flex-shrink: 0;
+    }
+
+    .card-title {
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: #fff;
+    }
+
+    .card-subtitle {
+      font-size: 0.82rem;
+      color: #888;
+      margin-top: 2px;
+    }
+
+    .price-tag {
+      display: inline-block;
+      background: #0d2e1a;
+      color: #4ade80;
+      border-radius: 8px;
+      padding: 3px 10px;
+      font-size: 0.85rem;
+      font-weight: 700;
+      margin: 6px 0 10px;
+    }
+
+    .price-tag.premium {
+      background: #1e2a0d;
+      color: #a3e635;
+    }
+
+    .price-tag.warning {
+      background: #2a1a05;
+      color: #fb923c;
+    }
+
+    .info-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin: 8px 0;
+    }
+
+    .info-chip {
+      background: #242424;
+      border-radius: 8px;
+      padding: 4px 10px;
+      font-size: 0.78rem;
+      color: #bbb;
+      display: flex;
+      align-items: center;
+      gap: 4px;
+    }
+
+    .card ul {
+      padding-left: 18px;
+      margin: 8px 0;
+    }
+
+    .card ul li {
+      font-size: 0.88rem;
+      color: #ccc;
+      margin-bottom: 5px;
+      line-height: 1.45;
+    }
+
+    .card p {
+      font-size: 0.88rem;
+      color: #ccc;
+      line-height: 1.55;
+      margin: 6px 0;
+    }
+
+    .link-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: #1e3a5f;
+      color: #5bb3ff;
+      border-radius: 8px;
+      padding: 7px 14px;
+      font-size: 0.82rem;
+      font-weight: 600;
+      text-decoration: none;
+      margin-top: 10px;
+      transition: background 0.2s;
+    }
+
+    .link-btn:hover { background: #244b7a; }
+
+    .link-btn.green {
+      background: #0d2e1a;
+      color: #4ade80;
+    }
+
+    .link-btn.green:hover { background: #0d3d22; }
+
+    .grid2 {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+    }
+
+    @media (max-width: 480px) {
+      .grid2 { grid-template-columns: 1fr; }
+    }
+
+    .activity-card {
+      background: #1a1a1a;
+      border: 1px solid #2a2a2a;
+      border-radius: 14px;
+      padding: 16px;
+    }
+
+    .activity-card .icon { font-size: 1.6rem; margin-bottom: 6px; }
+    .activity-card .name {
+      font-weight: 700;
+      font-size: 0.95rem;
+      color: #fff;
+      margin-bottom: 4px;
+    }
+    .activity-card .desc {
+      font-size: 0.8rem;
+      color: #999;
+      line-height: 1.45;
+    }
+
+    .timeline {
+      position: relative;
+      padding-left: 20px;
+      border-left: 2px solid #2a2a2a;
+    }
+
+    .timeline-item {
+      position: relative;
+      margin-bottom: 16px;
+    }
+
+    .timeline-item::before {
+      content: '';
+      position: absolute;
+      left: -25px;
+      top: 4px;
+      width: 10px;
+      height: 10px;
+      background: #5bb3ff;
+      border-radius: 50%;
+    }
+
+    .timeline-time {
+      font-size: 0.75rem;
+      color: #5bb3ff;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    .timeline-text {
+      font-size: 0.88rem;
+      color: #ccc;
+      margin-top: 2px;
+      line-height: 1.5;
+    }
+
+    .tip-card {
+      background: #1a1a1a;
+      border: 1px solid #2a2a2a;
+      border-left: 3px solid #5bb3ff;
+      border-radius: 0 12px 12px 0;
+      padding: 12px 16px;
+      margin-bottom: 10px;
+      font-size: 0.88rem;
+      color: #ccc;
+      line-height: 1.55;
+    }
+
+    .tip-card.warning {
+      border-left-color: #fb923c;
+    }
+
+    .tip-card.success {
+      border-left-color: #4ade80;
+    }
+
+    .divider {
+      border: none;
+      border-top: 1px solid #2a2a2a;
+      margin: 8px 0;
+    }
+
+    footer {
+      text-align: center;
+      padding: 32px 0 20px;
+      color: #555;
+      font-size: 0.78rem;
+    }
+
+    .stars { color: #fbbf24; }
+
+    .compare-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.82rem;
+      margin-top: 10px;
+    }
+
+    .compare-table th {
+      background: #222;
+      color: #aaa;
+      padding: 8px 10px;
+      text-align: left;
+      font-weight: 600;
+    }
+
+    .compare-table td {
+      padding: 8px 10px;
+      border-bottom: 1px solid #222;
+      color: #ccc;
+      vertical-align: top;
+    }
+
+    .compare-table tr:last-child td { border-bottom: none; }
+    .compare-table tr:hover td { background: #1e1e1e; }
+  </style>
+</head>
+<body>
+
+<header>
+  <h1>🏝️ Gili Trawangan</h1>
+  <p>план поездки • 14–15 марта 2026</p>
+  <div class="badge">📅 выезд утром → ночёвка → возврат</div>
+</header>
+
+<!-- МАРШРУТ ДНЯ -->
+<h2>🗓️ Примерный план</h2>
+
+<div class="card">
+  <div class="card-header">
+    <div class="card-icon">⏰</div>
+    <div>
+      <div class="card-title">День 1 — 14 марта (суббота)</div>
+      <div class="card-subtitle">Выезд из Бали → прибытие → исследование острова</div>
+    </div>
+  </div>
+  <div class="timeline">
+    <div class="timeline-item">
+      <div class="timeline-time">06:30–07:00</div>
+      <div class="timeline-text">Трансфер из отеля на пирс (Padang Bai или Serangan). Лучше заказать заранее.</div>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-time">08:00–09:30</div>
+      <div class="timeline-text">🚤 Отправление fast boat. Прибытие на Гили Т через 1.5–3 часа в зависимости от пирса.</div>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-time">11:00–12:00</div>
+      <div class="timeline-text">Заселение в отель. Прогулка по деревне, кофе на берегу.</div>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-time">12:00–16:00</div>
+      <div class="timeline-text">🤿 Снорклинг тур с черепахами, подводные скульптуры, Meno Wall.</div>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-time">16:00–18:00</div>
+      <div class="timeline-text">🚲 Велоизучение острова (40 мин по периметру). Swim на North Beach.</div>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-time">18:00–19:00</div>
+      <div class="timeline-text">🌅 Sunset Point на западном берегу — виды на Gunung Agung. Обязательно!</div>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-time">19:00–22:00</div>
+      <div class="timeline-text">🍕 Ужин (Regina Pizza, Scallywags, Jali Jali). Атмосфера Gili T ночью.</div>
+    </div>
+  </div>
+</div>
+
+<div class="card">
+  <div class="card-header">
+    <div class="card-icon">🌄</div>
+    <div>
+      <div class="card-title">День 2 — 15 марта (воскресенье)</div>
+      <div class="card-subtitle">Утро на острове → возврат на Бали</div>
+    </div>
+  </div>
+  <div class="timeline">
+    <div class="timeline-item">
+      <div class="timeline-time">07:00–09:00</div>
+      <div class="timeline-text">🏊 Купание утром, завтрак (лучший Coffee — Alchemy или Jali Jali).</div>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-time">09:00–11:00</div>
+      <div class="timeline-text">🚤 Обратный рейс на Бали (отходит 09:00–12:30 в зависимости от компании).</div>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-time">11:00–14:30</div>
+      <div class="timeline-text">Прибытие на Бали, трансфер в отель.</div>
+    </div>
+  </div>
+</div>
+
+<!-- ТРАНСПОРТ -->
+<h2>🚢 Fast Boat компании</h2>
+
+<!-- Blue Water Express -->
+<div class="card">
+  <div class="card-header">
+    <div class="card-icon">🔵</div>
+    <div>
+      <div class="card-title">Blue Water Express</div>
+      <div class="card-subtitle">Премиум-сервис · Award-winning · Стабилизаторы на борту</div>
+    </div>
+  </div>
+  <div class="price-tag premium">💰 $45–65 USD / чел.</div>
+  <div class="info-row">
+    <div class="info-chip">📍 Serangan / Padang Bai</div>
+    <div class="info-chip">⏱ 1.5–3 ч</div>
+    <div class="info-chip">⚓ 2–4 рейса/день</div>
+  </div>
+  <table class="compare-table">
+    <tr>
+      <th>Маршрут</th>
+      <th>Отправление</th>
+      <th>Прибытие</th>
+    </tr>
+    <tr>
+      <td>Serangan → Gili T</td>
+      <td>08:00</td>
+      <td>~10:30</td>
+    </tr>
+    <tr>
+      <td>Padang Bai → Gili T</td>
+      <td>09:00</td>
+      <td>~11:00</td>
+    </tr>
+    <tr>
+      <td>Gili T → Padang Bai</td>
+      <td>12:30</td>
+      <td>~14:30</td>
+    </tr>
+    <tr>
+      <td>Gili T → Serangan</td>
+      <td>12:00</td>
+      <td>~14:30</td>
+    </tr>
+  </table>
+  <ul style="margin-top: 10px;">
+    <li>Трансфер из отеля включён (Seminyak, Kuta, Ubud и др.)</li>
+    <li>Stabilizer-assisted hulls — комфортно даже при волнах 1.5м</li>
+    <li>WhatsApp-уведомления о статусе рейса</li>
+    <li>Рейтинг: <span class="stars">★★★★★</span> — один из лучших по отзывам</li>
+  </ul>
+  <a href="https://bluewater-express.com" target="_blank" class="link-btn">🌐 bluewater-express.com</a>
+  <a href="https://www.gilibookings.com/blue-water-express" target="_blank" class="link-btn green">🎟️ Купить билет</a>
+</div>
+
+<!-- Eka Jaya -->
+<div class="card">
+  <div class="card-header">
+    <div class="card-icon">🟠</div>
+    <div>
+      <div class="card-title">Eka Jaya Fast Boat</div>
+      <div class="card-subtitle">Надёжный оператор · 3 рейса в день · Прямой Padang Bai → Gili T</div>
+    </div>
+  </div>
+  <div class="price-tag">💰 $31 USD / чел.</div>
+  <div class="info-row">
+    <div class="info-chip">📍 Padang Bai</div>
+    <div class="info-chip">⏱ ~1.5 ч</div>
+    <div class="info-chip">⚓ 3 рейса/день</div>
+  </div>
+  <table class="compare-table">
+    <tr>
+      <th>Маршрут</th>
+      <th>Отправление</th>
+      <th>Цена</th>
+    </tr>
+    <tr>
+      <td>Padang Bai → Gili T</td>
+      <td>09:00 / 12:30 / 13:45</td>
+      <td>$31</td>
+    </tr>
+    <tr>
+      <td>Gili T → Padang Bai</td>
+      <td>09:00 / 11:00 / 15:00</td>
+      <td>$31</td>
+    </tr>
+  </table>
+  <ul style="margin-top: 10px;">
+    <li>Один из старейших и надёжных операторов маршрута</li>
+    <li>Трансфер из отеля на Бали: $10/чел (shuttle) или $28/авто (private)</li>
+    <li>Зоны пикапа: Kuta, Seminyak, Sanur, Ubud, Nusa Dua, Canggu</li>
+    <li>Рейтинг: <span class="stars">★★★★☆</span></li>
+  </ul>
+  <a href="https://www.gilibookings.com/eka-jaya-fast-ferry" target="_blank" class="link-btn">🌐 Eka Jaya / GiliBookings</a>
+  <a href="https://www.gilibestdeal.com/boat-to-gili/bali-eka-jaya-fast-boat-schedules-and-prices" target="_blank" class="link-btn green">🎟️ Цены и расписание</a>
+</div>
+
+<!-- Scoot Fast Cruises -->
+<div class="card">
+  <div class="card-header">
+    <div class="card-icon">⚡</div>
+    <div>
+      <div class="card-title">Scoot Fast Cruises</div>
+      <div class="card-subtitle">Award-winning · Island Hopper · Отправление из Sanur</div>
+    </div>
+  </div>
+  <div class="price-tag warning">💰 $35–50 USD / чел.</div>
+  <div class="info-row">
+    <div class="info-chip">📍 Sanur</div>
+    <div class="info-chip">⏱ ~4 ч (через Lembongan)</div>
+    <div class="info-chip">⚓ 1 рейс/день</div>
+  </div>
+  <table class="compare-table">
+    <tr>
+      <th>Маршрут</th>
+      <th>Отправление</th>
+      <th>Прибытие</th>
+    </tr>
+    <tr>
+      <td>Sanur → Gili T</td>
+      <td>09:30</td>
+      <td>~13:30</td>
+    </tr>
+  </table>
+  <ul style="margin-top: 10px;">
+    <li>Уникальный Island Hopper — остановка на Nusa Lembongan</li>
+    <li>Трансфер из отеля включён</li>
+    <li>⚠️ Долгий путь (~4ч) — Sanur лучше для тех, кто в South Bali</li>
+    <li>Рейтинг: <span class="stars">★★★★☆</span></li>
+  </ul>
+  <a href="https://www.gilibookings.com/scoot-fast-cruises" target="_blank" class="link-btn">🌐 Scoot / GiliBookings</a>
+</div>
+
+<!-- Gili Getaway -->
+<div class="card">
+  <div class="card-header">
+    <div class="card-icon">🟢</div>
+    <div>
+      <div class="card-title">Gili Getaway</div>
+      <div class="card-subtitle">Premium vessels · Быстрый маршрут · Serangan</div>
+    </div>
+  </div>
+  <div class="price-tag">💰 $35–45 USD / чел.</div>
+  <div class="info-row">
+    <div class="info-chip">📍 Serangan</div>
+    <div class="info-chip">⏱ ~2.5 ч</div>
+    <div class="info-chip">⚓ 1 рейс/день 09:00</div>
+  </div>
+  <ul>
+    <li>Отправление в 09:00 из Serangan, прибытие ~11:30</li>
+    <li>Premium суда с хорошим отзывом</li>
+    <li>Трансфер из отеля включён</li>
+    <li>Рейтинг: <span class="stars">★★★★☆</span></li>
+  </ul>
+  <a href="https://giligetaway.com" target="_blank" class="link-btn">🌐 giligetaway.com</a>
+</div>
+
+<!-- СРАВНИТЕЛЬНАЯ ТАБЛИЦА -->
+<h2>📊 Сравнение вариантов</h2>
+
+<div class="card">
+  <table class="compare-table">
+    <tr>
+      <th>Компания</th>
+      <th>Цена</th>
+      <th>Пирс</th>
+      <th>Время в пути</th>
+      <th>Трансфер</th>
+    </tr>
+    <tr>
+      <td>🔵 Blue Water Express</td>
+      <td>$45–65</td>
+      <td>Serangan / PB</td>
+      <td>1.5–3 ч</td>
+      <td>✅ Вкл.</td>
+    </tr>
+    <tr>
+      <td>🟠 Eka Jaya</td>
+      <td>$31</td>
+      <td>Padang Bai</td>
+      <td>~1.5 ч</td>
+      <td>💵 +$10-28</td>
+    </tr>
+    <tr>
+      <td>⚡ Scoot</td>
+      <td>$35–50</td>
+      <td>Sanur</td>
+      <td>~4 ч</td>
+      <td>✅ Вкл.</td>
+    </tr>
+    <tr>
+      <td>🟢 Gili Getaway</td>
+      <td>$35–45</td>
+      <td>Serangan</td>
+      <td>~2.5 ч</td>
+      <td>✅ Вкл.</td>
+    </tr>
+  </table>
+  <p style="margin-top: 12px; color: #888; font-size: 0.8rem;">
+    💡 <strong>Рекомендация:</strong> Для оптимального баланса цена/качество — <strong>Eka Jaya</strong> (самый быстрый маршрут из Padang Bai). Для максимального комфорта — <strong>Blue Water Express</strong>.
+  </p>
+</div>
+
+<!-- ГДЕ КУПИТЬ -->
+<h2>🎟️ Где купить билеты</h2>
+
+<div class="card">
+  <ul>
+    <li>🌐 <a href="https://www.giliferries.com/fast-boat/bali/gili-trawangan" target="_blank" style="color:#5bb3ff">GiliFerries.com</a> — агрегатор, все компании, от $24</li>
+    <li>🌐 <a href="https://www.gilibookings.com/bali-to-gili-trawangan" target="_blank" style="color:#5bb3ff">GiliBookings.com</a> — надёжное бронирование, e-ticket</li>
+    <li>🌐 <a href="https://www.gilitickets.com" target="_blank" style="color:#5bb3ff">GiliTickets.com</a> — бюджетные варианты от $24</li>
+    <li>🌐 <a href="https://bluewater-express.com" target="_blank" style="color:#5bb3ff">BlueWater-Express.com</a> — официальный сайт BWE</li>
+    <li>🌐 <a href="https://www.viator.com" target="_blank" style="color:#5bb3ff">Viator.com</a> — пакеты с трансфером</li>
+  </ul>
+  <hr class="divider" />
+  <p>Средняя цена one-way: <strong style="color:#4ade80">$24–65 USD</strong> в зависимости от компании и класса. Return обычно дешевле при одновременной покупке.</p>
+</div>
+
+<!-- ЧТО ДЕЛАТЬ -->
+<h2>🏄 Что делать на Gili T</h2>
+
+<div class="grid2">
+  <div class="activity-card">
+    <div class="icon">🤿</div>
+    <div class="name">Снорклинг с черепахами</div>
+    <div class="desc">Обязательно! Boat tour $15–25. Черепахи прямо на пляже.</div>
+  </div>
+  <div class="activity-card">
+    <div class="icon">🌅</div>
+    <div class="name">Sunset Point</div>
+    <div class="desc">Закат с видом на Gunung Agung. Лучшее место — западный берег.</div>
+  </div>
+  <div class="activity-card">
+    <div class="icon">🚲</div>
+    <div class="name">Велосипед вокруг острова</div>
+    <div class="desc">Весь периметр ~40 мин. Аренда $3–5/день. Нет машин — только велики и лошади!</div>
+  </div>
+  <div class="activity-card">
+    <div class="icon">🐠</div>
+    <div class="name">Дайвинг</div>
+    <div class="desc">Meno Wall — известная точка. Fun dive от $45. Есть курсы PADI.</div>
+  </div>
+  <div class="activity-card">
+    <div class="icon">🗿</div>
+    <div class="name">Подводные скульптуры</div>
+    <div class="desc">Уникальные арт-объекты под водой — можно со снорклингом.</div>
+  </div>
+  <div class="activity-card">
+    <div class="icon">🏖️</div>
+    <div class="name">North Beach</div>
+    <div class="desc">Самый спокойный пляж острова, прозрачная вода. Идеально для пар.</div>
+  </div>
+  <div class="activity-card">
+    <div class="icon">🏔️</div>
+    <div class="name">Gili T Hill</div>
+    <div class="desc">Смотровая точка на холме — панорама всех трёх островов Гили.</div>
+  </div>
+  <div class="activity-card">
+    <div class="icon">🍸</div>
+    <div class="name">Beach bars & вечеринки</div>
+    <div class="desc">Rudy's Pub, Sama Sama, Jiggy's — прибрежные бары с огненными шоу.</div>
+  </div>
+</div>
+
+<!-- ЕДА И РЕСТОРАНЫ -->
+<h2>🍽️ Еда и рестораны</h2>
+
+<div class="card">
+  <ul>
+    <li>🍕 <strong>Regina Pizza</strong> — лучшая дровяная итальянская пицца на острове</li>
+    <li>🦞 <strong>Scallywags</strong> — морепродукты, гриль, атмосфера у воды</li>
+    <li>☕ <strong>Jali Jali</strong> — завтраки, кофе, боулы, хороший вид</li>
+    <li>🥗 <strong>Alchemy</strong> — raw food, смузи, отличный кофе</li>
+    <li>🍣 <strong>Beach House</strong> — коктейли и закаты прямо у воды</li>
+    <li>🥘 <strong>Warung lokal</strong> — Nasi Goreng / Mie Goreng за $2–4</li>
+  </ul>
+  <p style="margin-top: 8px; color: #888; font-size: 0.8rem;">💡 Цены умеренные, чуть выше чем на Бали. Ужин на двоих: $20–50.</p>
+</div>
+
+<!-- ОТЕЛИ -->
+<h2>🛏️ Отели (рекомендации)</h2>
+
+<div class="card">
+  <div class="card-header">
+    <div class="card-icon">🏨</div>
+    <div>
+      <div class="card-title">Где искать отель</div>
+      <div class="card-subtitle">Бюджет $30–200/ночь в зависимости от класса</div>
+    </div>
+  </div>
+  <ul>
+    <li>🌊 <strong>Biru Biru Villas</strong> — бассейн, вилла, популярный</li>
+    <li>🌺 <strong>Pearl of Trawangan</strong> — хороший уровень, центр</li>
+    <li>🏝️ <strong>Kokomo Resort</strong> — прямо на берегу</li>
+    <li>🎒 <strong>Гестхаусы/homestay</strong> — от $20/ночь, поиск через Booking.com</li>
+  </ul>
+  <div style="margin-top: 12px; display: flex; gap: 8px; flex-wrap: wrap;">
+    <a href="https://www.booking.com/searchresults.html?ss=Gili+Trawangan" target="_blank" class="link-btn">🏨 Booking.com</a>
+    <a href="https://www.agoda.com/search?city=17148" target="_blank" class="link-btn green">🏨 Agoda</a>
+  </div>
+  <p style="margin-top: 10px; color: #888; font-size: 0.8rem;">⚠️ На март 2026 — ещё есть время, но бронировать заранее (особенно weekend)!</p>
+</div>
+
+<!-- СОВЕТЫ -->
+<h2>💡 Советы путешественникам</h2>
+
+<div class="tip-card success">
+  ✅ <strong>Самый быстрый маршрут</strong> — Padang Bai (Bali) → Gili T: ~1.5 ч с Eka Jaya или Blue Water Express. Padang Bai в ~2 часах от Seminyak/Kuta.
+</div>
+
+<div class="tip-card">
+  🌊 <strong>Морская болезнь:</strong> Возьмите таблетки (Dramamine/Sea Legs). Лучший выбор — места в середине лодки, ближе к воде. BWE с стабилизаторами комфортнее.
+</div>
+
+<div class="tip-card">
+  💰 <strong>Наличные:</strong> ATM на острове есть, но берут большую комиссию. Снимите рупии заранее на Бали. На острове дороже.
+</div>
+
+<div class="tip-card warning">
+  ⚠️ <strong>Нет моторного транспорта:</strong> Только велосипеды и cidomo (лошадиные повозки). Лёгкий багаж — критично! Тяжёлый чемодан на Гили = мучения.
+</div>
+
+<div class="tip-card">
+  🤿 <strong>Снорклинг с берега:</strong> Черепах можно встретить у North Beach и East Beach даже без тура. Ласты + маска лучше взять на Бали (дешевле).
+</div>
+
+<div class="tip-card warning">
+  ⚠️ <strong>Возвратный рейс:</strong> Последние лодки уходят в 15:00–16:00. Планируйте выселение заранее. Вещи часто можно оставить на ресепшн.
+</div>
+
+<div class="tip-card success">
+  ✅ <strong>Лучшее время суток:</strong> Утро — снорклинг и купание (штиль). Вечер — Sunset Point. Днём — самый жаркий период, сиеста и тень.
+</div>
+
+<div class="tip-card">
+  📱 <strong>Интернет:</strong> SIM Telkomsel / XL работает. WiFi в большинстве кафе. На воде — нет связи, планируйте офлайн карты (Maps.me / Google Maps офлайн).
+</div>
+
+<div class="tip-card">
+  ☀️ <strong>Март — сезон:</strong> Переходный период (wet→dry). Возможны короткие дожди. Море обычно спокойное. Температура 28–32°C. Всё работает.
+</div>
+
+<!-- ПОЛЕЗНЫЕ ССЫЛКИ -->
+<h2>🔗 Полезные ссылки</h2>
+
+<div class="card">
+  <ul>
+    <li>🗺️ <a href="https://www.giliferries.com/fast-boat/bali/gili-trawangan" target="_blank" style="color:#5bb3ff">GiliFerries — все расписания и цены</a></li>
+    <li>🎟️ <a href="https://www.gilibookings.com/bali-to-gili-trawangan" target="_blank" style="color:#5bb3ff">GiliBookings — бронирование билетов</a></li>
+    <li>💰 <a href="https://www.gilitickets.com" target="_blank" style="color:#5bb3ff">GiliTickets — бюджетные операторы</a></li>
+    <li>🏝️ <a href="https://travel-lush.com/gili-trawangan-guide/" target="_blank" style="color:#5bb3ff">Travel Lush — полный гид (обновлён 2026)</a></li>
+    <li>🏨 <a href="https://www.booking.com/searchresults.html?ss=Gili+Trawangan&checkin=2026-03-14&checkout=2026-03-15" target="_blank" style="color:#5bb3ff">Booking.com — отели 14 марта</a></li>
+    <li>🤿 <a href="https://www.getyourguide.com/gili-trawangan-l88769/" target="_blank" style="color:#5bb3ff">GetYourGuide — туры и активности</a></li>
+  </ul>
+</div>
+
+<footer>
+  🤖 Составлено Marvin · Данные актуальны на март 2026 · Цены могут незначительно меняться
+</footer>
+
+<!-- ПАКЕТНЫЕ ТУРЫ -->
+<section id="packages">
+<h2>🎒 Пакетные туры — что хвалят</h2>
+
+<div class="tip-card success" style="margin-bottom: 16px;">
+  💡 Пакет = транспорт + отель + гид + активности в одном. Удобно, если не хочется собирать самому. Ниже — реальные туроператоры с отзывами и ценами на 2025–2026.
+</div>
+
+<!-- Карточка 1: The Bali Trip Mate -->
+<div class="card">
+  <div class="card-header">
+    <div class="card-icon">🌟</div>
+    <div>
+      <div class="card-title">The Bali Trip Mate — 3 дня / 2 ночи</div>
+      <div class="card-subtitle">TourRadar · Малая группа 4–14 чел · All Ages Welcome</div>
+    </div>
+  </div>
+  <div class="price-tag">💰 от €265 / чел (~$285)</div>
+  <div class="info-row">
+    <div class="info-chip">📍 Старт: Денпасар / отель на Бали</div>
+    <div class="info-chip">⭐ 4.7/5 (104 отзыва)</div>
+    <div class="info-chip">🏨 Scallywags Resort</div>
+  </div>
+  <ul>
+    <li>✅ Трансфер из отеля на Бали → Padang Bai → Gili T (Eka Jaya fast boat)</li>
+    <li>✅ 2 ночи в Scallywags Resort или аналог (прямо у пляжа)</li>
+    <li>✅ Завтрак, обед (на пляже Gili Meno), прощальный ужин</li>
+    <li>✅ Снорклинг-тур по трём Гили (Gili T + Gili Meno + Gili Air)</li>
+    <li>✅ Профессиональный гид, небольшая группа</li>
+    <li>❌ Перелёты и страховка — не включены</li>
+  </ul>
+  <p style="margin-top: 8px; font-style: italic; color: #888; border-left: 2px solid #3a3a3a; padding-left: 10px;">
+    «The beautiful island life to the crystal waters of Gili Islands and the amazing friendly guide and the crew.» — LauraSmith, ноябрь 2024
+  </p>
+  <a href="https://www.tourradar.com/t/184963" target="_blank" class="link-btn">🌐 TourRadar — смотреть тур</a>
+</div>
+
+<!-- Карточка 2: Diwira Wisata Indonesia — Bali & Gili Escape 7 дней -->
+<div class="card">
+  <div class="card-header">
+    <div class="card-icon">🏆</div>
+    <div>
+      <div class="card-title">Diwira Wisata Indonesia — 7 дней «Bali & Gili Escape»</div>
+      <div class="card-subtitle">TourRadar · Официальный туроператор Бали · Гарантированные даты</div>
+    </div>
+  </div>
+  <div class="price-tag premium">💰 от €1 165 / чел</div>
+  <div class="info-row">
+    <div class="info-chip">📍 Bali → Gili T → Nusa Penida → Ubud</div>
+    <div class="info-chip">⭐ 4.4/5 (39 отзывов)</div>
+    <div class="info-chip">👥 Ages 12+</div>
+  </div>
+  <ul>
+    <li>✅ Полный маршрут: Бали + Gili T + Gili Meno + Gili Air + Nusa Penida + Убуд + Кинтамани</li>
+    <li>✅ Eka Jaya fast ferry Padang Bai ↔ Gili Trawangan</li>
+    <li>✅ Снорклинг в 3 Гили с черепахами</li>
+    <li>✅ Все обеды и ужины включены (в т.ч. романтический закатный ужин Jimbaran Beach)</li>
+    <li>✅ Трансфер аэропорт ↔ отель + все межостровные перемещения</li>
+    <li>✅ Гид на английском, ответ оператора ~24ч</li>
+  </ul>
+  <p style="margin-top: 8px; font-style: italic; color: #888; border-left: 2px solid #3a3a3a; padding-left: 10px;">
+    «Had a fantastic time in Bali, thanks to Made and his team! One of the best features of this tour was its well-thought itinerary.» — SITESH, январь 2026
+  </p>
+  <p style="margin-top: 8px; font-style: italic; color: #888; border-left: 2px solid #3a3a3a; padding-left: 10px;">
+    «This tour was a great way to experience Bali in a short amount of time. The itinerary was well thought out...» — Milena, октябрь 2025
+  </p>
+  <a href="https://www.tourradar.com/t/311922" target="_blank" class="link-btn">🌐 TourRadar — смотреть тур</a>
+</div>
+
+<!-- Карточка 3: Wanderlands Travel — Young Travelers -->
+<div class="card">
+  <div class="card-header">
+    <div class="card-icon">🎡</div>
+    <div>
+      <div class="card-title">Wanderlands Travel — 7 дней (18–39 лет)</div>
+      <div class="card-subtitle">TourRadar · Natya Resort · Gili Swing + Night Market</div>
+    </div>
+  </div>
+  <div class="price-tag">💰 от €553 / чел</div>
+  <div class="info-row">
+    <div class="info-chip">📍 Убуд → Gili T → Lombok</div>
+    <div class="info-chip">🎯 Ages 18–39</div>
+    <div class="info-chip">🏨 Natya Resort, Gili T</div>
+  </div>
+  <ul>
+    <li>✅ Размещение в Natya Resort прямо на Гили Траванган</li>
+    <li>✅ Снорклинг с черепахами + кулинарный класс балийской кухни</li>
+    <li>✅ Gili Swing + закатная велопрогулка по острову</li>
+    <li>✅ Night Market — свежие морепродукты и атмосфера</li>
+    <li>✅ Убуд в программе (рисовые поля, храмы)</li>
+    <li>✅ Формат «explorer» — куратированный маршрут + своя свобода</li>
+  </ul>
+  <a href="https://www.tourradar.com/t/240543" target="_blank" class="link-btn">🌐 TourRadar — смотреть тур</a>
+</div>
+
+<!-- Карточка 4: Экономичный вариант — сам себе пакет -->
+<div class="card">
+  <div class="card-header">
+    <div class="card-icon">💡</div>
+    <div>
+      <div class="card-title">DIY-пакет — рекомендации Reddit</div>
+      <div class="card-subtitle">r/bali · r/travel · Самый популярный бюджетный подход</div>
+    </div>
+  </div>
+  <div class="price-tag warning">💰 $80–120 / чел «всё включено» (самостоятельно)</div>
+  <div class="info-row">
+    <div class="info-chip">🚤 Eka Jaya fast boat</div>
+    <div class="info-chip">🤿 Снорклинг-тур $15–25</div>
+    <div class="info-chip">🛏️ Guesthouse $25–45/ночь</div>
+  </div>
+  <ul>
+    <li>🚤 <strong>Eka Jaya</strong> ($31) — рекомендован на Reddit как «big comfortable boat» с открытой палубой и AC внутри</li>
+    <li>🏨 <strong>Biru Biru Villas / Pearl of Trawangan / Kokomo Resort</strong> ($30–80/ночь)</li>
+    <li>🤿 <strong>Снорклинг-тур</strong> — любой local operator на пирсе ($15–25/чел)</li>
+    <li>🚲 <strong>Велосипед</strong> вокруг острова ($3–5/день)</li>
+    <li>📅 Booking.com или GiliBookings.com — бронировать за 2–3 нед.</li>
+  </ul>
+  <p style="margin-top: 8px; font-style: italic; color: #888; border-left: 2px solid #3a3a3a; padding-left: 10px;">
+    «Take a big boat from Bali. Ekajaya operator offers a much bigger comfortable boat where you can opt for AC seats inside or outer deck to absorb the sun.» — u/travel_reddit, 2024
+  </p>
+  <p style="margin-top: 4px; font-style: italic; color: #888; border-left: 2px solid #3a3a3a; padding-left: 10px;">
+    «Gili t is fuckn siiiiik enjoy yer stay. Best place in Bali probably best place in the world.» — u/redditor, r/bali
+  </p>
+  <div style="display: flex; gap: 8px; flex-wrap: wrap; margin-top: 10px;">
+    <a href="https://www.reddit.com/r/travel/comments/146rx1c/recent_trip_to_gili_islands_experience_and_tips/" target="_blank" class="link-btn">💬 Reddit: опыт туристов</a>
+    <a href="https://baliekajaya.com" target="_blank" class="link-btn green">🎟️ Eka Jaya билеты</a>
+  </div>
+</div>
+
+<!-- Сравнение пакетов -->
+<div class="card">
+  <div class="card-title" style="margin-bottom: 10px; color: #fff;">📊 Сравнение пакетов</div>
+  <table class="compare-table">
+    <tr>
+      <th>Оператор</th>
+      <th>Длит.</th>
+      <th>Цена/чел</th>
+      <th>Рейтинг</th>
+      <th>Для кого</th>
+    </tr>
+    <tr>
+      <td>🌟 The Bali Trip Mate</td>
+      <td>3 дня</td>
+      <td>€265</td>
+      <td><span class="stars">★★★★☆</span> 4.7</td>
+      <td>Пары, друзья</td>
+    </tr>
+    <tr>
+      <td>🏆 Diwira Wisata</td>
+      <td>7 дней</td>
+      <td>€1 165</td>
+      <td><span class="stars">★★★★☆</span> 4.4</td>
+      <td>Полный отпуск</td>
+    </tr>
+    <tr>
+      <td>🎡 Wanderlands Travel</td>
+      <td>7 дней</td>
+      <td>€553</td>
+      <td>—</td>
+      <td>18–39 лет</td>
+    </tr>
+    <tr>
+      <td>💡 DIY (Reddit)</td>
+      <td>2 дня</td>
+      <td>$80–120</td>
+      <td><span class="stars">★★★★★</span></td>
+      <td>Самостоятельные</td>
+    </tr>
+  </table>
+  <p style="margin-top: 12px; color: #888; font-size: 0.8rem;">
+    💡 <strong>Вывод:</strong> Для формата «приехать — переночевать — уехать» лучший баланс даёт <strong>The Bali Trip Mate</strong> (3 дня, готовый пакет, малая группа). Бюджетно — <strong>DIY через Eka Jaya</strong> + Booking.com. Полный отпуск на Индонезии — <strong>Diwira Wisata 7 дней</strong>.
+  </p>
+</div>
+
+<div class="tip-card" style="font-size: 0.8rem; color: #777;">
+  📎 Источники: <a href="https://www.tourradar.com/d/gili-trawangan" target="_blank" style="color: #5bb3ff">TourRadar.com</a> · <a href="https://www.reddit.com/r/travel/comments/146rx1c/" target="_blank" style="color: #5bb3ff">Reddit r/travel</a> · <a href="https://www.reddit.com/r/bali/comments/1erfi3y/ferries_gili_t/" target="_blank" style="color: #5bb3ff">Reddit r/bali</a> · Данные на март 2026
+</div>
+</section>
+
+<footer>
+  🤖 Составлено Marvin · Данные актуальны на март 2026 · Цены могут незначительно меняться
+</footer>
+
+</body>
+</html>
