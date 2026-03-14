@@ -67,7 +67,7 @@
       "name": "Напоминание: счета бухгалтеру",
       "enabled": true,
       "createdAtMs": 1770565000000,
-      "updatedAtMs": 1773374413256,
+      "updatedAtMs": 1773460964914,
       "schedule": {
         "kind": "cron",
         "expr": "0 12 * * *",
@@ -86,15 +86,15 @@
         "bestEffort": true
       },
       "state": {
-        "lastRunAtMs": 1773374400011,
+        "lastRunAtMs": 1773460800016,
         "lastStatus": "error",
-        "lastDurationMs": 13245,
-        "consecutiveErrors": 4,
-        "nextRunAtMs": 1773460800000,
+        "lastDurationMs": 164898,
+        "consecutiveErrors": 5,
+        "nextRunAtMs": 1773547200000,
         "lastRunStatus": "error",
         "lastDeliveryStatus": "delivered",
         "lastDelivered": true,
-        "lastError": "⚠️ ✉️ Message failed"
+        "lastError": "⚠️ 🔌 Gateway failed"
       }
     },
     {
@@ -103,7 +103,7 @@
       "name": "Daily git backup (3:00 AM Tallinn)",
       "enabled": true,
       "createdAtMs": 1771077110796,
-      "updatedAtMs": 1773352808605,
+      "updatedAtMs": 1773439208365,
       "schedule": {
         "kind": "cron",
         "expr": "0 0 * * *",
@@ -119,15 +119,15 @@
         "mode": "none"
       },
       "state": {
-        "nextRunAtMs": 1773439200000,
-        "lastRunAtMs": 1773352800017,
+        "nextRunAtMs": 1773525600000,
+        "lastRunAtMs": 1773439200082,
         "lastStatus": "ok",
-        "lastDurationMs": 8588,
+        "lastDurationMs": 8283,
         "consecutiveErrors": 0,
         "lastRunStatus": "ok",
         "lastDeliveryStatus": "not-delivered",
         "lastDelivered": false,
-        "runningAtMs": 1773439200035
+        "runningAtMs": 1773525600015
       }
     },
     {

@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PinkSunset Kiss — Menu</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    background: #0f0e0d;
+    color: #f0ece6;
+    font-family: 'Georgia', serif;
+    min-height: 100vh;
+  }
+
+  header {
+    text-align: center;
+    padding: 48px 24px 32px;
+    border-bottom: 1px solid #2a2620;
+  }
+
+  header h1 {
+    font-size: 2.4rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    font-weight: 400;
+    color: #f0ece6;
+  }
+
+  header p {
+    margin-top: 8px;
+    color: #8a7f72;
+    font-size: 0.85rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+
+  .note {
+    text-align: center;
+    padding: 12px;
+    font-size: 0.78rem;
+    color: #6a6058;
+    letter-spacing: 0.05em;
+  }
+
+  .section-title {
+    text-align: center;
+    padding: 36px 24px 20px;
+    font-size: 0.75rem;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: #c9a96e;
+  }
+
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 1px;
+    background: #1a1815;
+    max-width: 1100px;
+    margin: 0 auto 40px;
+    padding: 0 1px;
+  }
+
+  .card {
+    background: #0f0e0d;
+    overflow: hidden;
+    transition: background 0.2s;
+  }
+
+  .card:hover {
+    background: #161410;
+  }
+
+  .card-img {
+    width: 100%;
+    aspect-ratio: 4/3;
+    object-fit: cover;
+    display: block;
+    filter: brightness(0.9) saturate(0.85);
+    transition: filter 0.3s;
+  }
+
+  .card:hover .card-img {
+    filter: brightness(1) saturate(1);
+  }
+
+  .card-body {
+    padding: 18px 20px 22px;
+  }
+
+  .card-name {
+    font-size: 1.05rem;
+    font-weight: 400;
+    letter-spacing: 0.04em;
+    color: #f0ece6;
+    margin-bottom: 6px;
+  }
+
+  .card-desc {
+    font-size: 0.82rem;
+    color: #8a7f72;
+    line-height: 1.55;
+    font-family: 'Arial', sans-serif;
+    margin-bottom: 14px;
+  }
+
+  .card-footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .card-price {
+    font-size: 1.1rem;
+    color: #c9a96e;
+    letter-spacing: 0.05em;
+  }
+
+  .card-price span {
+    font-size: 0.7rem;
+    color: #6a6058;
+    margin-left: 2px;
+  }
+
+  .badge {
+    font-size: 0.68rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    padding: 3px 8px;
+    border-radius: 2px;
+    font-family: 'Arial', sans-serif;
+  }
+
+  .badge-veg {
+    background: #1a2e1a;
+    color: #6db86d;
+    border: 1px solid #2d4f2d;
+  }
+
+  .badge-spicy {
+    background: #2e1a1a;
+    color: #d46a4a;
+    border: 1px solid #4f2d2d;
+  }
+
+  footer {
+    text-align: center;
+    padding: 24px;
+    color: #3a3530;
+    font-size: 0.75rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    border-top: 1px solid #1a1815;
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <h1>PinkSunset Kiss</h1>
+  <p>PinkCoco Gili Trawangan &nbsp;·&nbsp; Food &amp; Snacks</p>
+</header>
+
+<div class="note">All prices in IDR thousands &nbsp;·&nbsp; +10% tax &nbsp;·&nbsp; +7% service charge</div>
+
+<!-- SNACKS -->
+<div class="section-title">Snacks</div>
+
+<div class="grid">
+
+  <div class="card">
+    <img class="card-img" src="https://images.unsplash.com/photo-1573080496219-bb080dd4f877?w=600&q=80" alt="Fries">
+    <div class="card-body">
+      <div class="card-name">Our Famous Fries</div>
+      <div class="card-desc">Crispy fries topped with smoked bacon and drizzled with aromatic truffle sauce.</div>
+      <div class="card-footer">
+        <div class="card-price">100 <span>k</span></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <img class="card-img" src="https://images.unsplash.com/photo-1527477396000-e27163b481c2?w=600&q=80" alt="Wings">
+    <div class="card-body">
+      <div class="card-name">Classic BBQ Wings</div>
+      <div class="card-desc">Glazed chicken wings in smoky BBQ sauce, finished with fresh spring onions.</div>
+      <div class="card-footer">
+        <div class="card-price">95 <span>k</span></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <img class="card-img" src="https://images.unsplash.com/photo-1601050690597-df0568f70950?w=600&q=80" alt="Samosa">
+    <div class="card-body">
+      <div class="card-name">Spiced Potato Samosa</div>
+      <div class="card-desc">Golden samosas with spiced potato filling, served with fruit chutney and cool tzatziki.</div>
+      <div class="card-footer">
+        <div class="card-price">100 <span>k</span></div>
+        <span class="badge badge-spicy">🌶 Spicy</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <img class="card-img" src="https://images.unsplash.com/photo-1565299585323-38d6b0865b47?w=600&q=80" alt="Tacos">
+    <div class="card-body">
+      <div class="card-name">Plant-Based Tacos</div>
+      <div class="card-desc">Soft tacos filled with tofu ricotta, crunchy coleslaw and fresh pico de gallo.</div>
+      <div class="card-footer">
+        <div class="card-price">105 <span>k</span></div>
+        <span class="badge badge-veg">Vegan</span>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<!-- WRAPS & BUNS -->
+<div class="section-title">Wraps &amp; Buns</div>
+
+<div class="grid">
+
+  <div class="card">
+    <img class="card-img" src="https://images.unsplash.com/photo-1512058564366-18510be2db19?w=600&q=80" alt="Hummus">
+    <div class="card-body">
+      <div class="card-name">Pink Beet Hummus</div>
+      <div class="card-desc">Vibrant beetroot hummus served on warm toasted pitta with herb oil.</div>
+      <div class="card-footer">
+        <div class="card-price">105 <span>k</span></div>
+        <span class="badge badge-veg">Vegan</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <img class="card-img" src="https://images.unsplash.com/photo-1618040996337-56904b7850b9?w=600&q=80" alt="Quesadillas">
+    <div class="card-body">
+      <div class="card-name">Chicken Quesadillas</div>
+      <div class="card-desc">Crispy folded tortilla with seasoned chicken, melted cheese, guacamole and salsa.</div>
+      <div class="card-footer">
+        <div class="card-price">135 <span>k</span></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <img class="card-img" src="https://images.unsplash.com/photo-1626700051175-6818013e1d4f?w=600&q=80" alt="Burrito">
+    <div class="card-body">
+      <div class="card-name">Chicken Wrap Burrito</div>
+      <div class="card-desc">Hearty wrap with grilled chicken strips and smooth creamy avocado purée.</div>
+      <div class="card-footer">
+        <div class="card-price">125 <span>k</span></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <img class="card-img" src="https://images.unsplash.com/photo-1568901346375-23c9450c58cd?w=600&q=80" alt="Burger">
+    <div class="card-body">
+      <div class="card-name">Pink Beet Burger</div>
+      <div class="card-desc">Juicy mushroom patty in a beet-stained bun with signature beet sauce and golden fries.</div>
+      <div class="card-footer">
+        <div class="card-price">120 <span>k</span></div>
+        <span class="badge badge-veg">Plant-based</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <img class="card-img" src="https://images.unsplash.com/photo-1528735602780-2552fd46c7af?w=600&q=80" alt="Caprese">
+    <div class="card-body">
+      <div class="card-name">Classic Caprese Sandwich</div>
+      <div class="card-desc">House-baked focaccia layered with fresh mozzarella, ripe tomatoes and basil pesto.</div>
+      <div class="card-footer">
+        <div class="card-price">115 <span>k</span></div>
+        <span class="badge badge-veg">Veg</span>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<footer>Enjoy your meal</footer>
+
+</body>
+</html>
