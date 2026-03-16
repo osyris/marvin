@@ -1,0 +1,59 @@
+services:
+    fonesdr26tnbh87u0xew7fyc-082005989581:
+        image: 'fonesdr26tnbh87u0xew7fyc:515125db01190a1cf6cb72b00435c74ad838151f'
+        container_name: fonesdr26tnbh87u0xew7fyc-082005989581
+        restart: unless-stopped
+        expose:
+            - '3000'
+        networks:
+            coolify:
+                aliases:
+                    - fonesdr26tnbh87u0xew7fyc-082005989581
+        mem_limit: '0'
+        memswap_limit: '0'
+        mem_swappiness: 60
+        mem_reservation: '0'
+        cpus: 0.0
+        cpu_shares: 1024
+        env_file:
+            - .env
+        labels:
+            - traefik.enable=true
+            - traefik.http.middlewares.gzip.compress=true
+            - traefik.http.middlewares.redirect-to-https.redirectscheme.scheme=https
+            - traefik.http.routers.http-0-fonesdr26tnbh87u0xew7fyc.entryPoints=http
+            - traefik.http.routers.http-0-fonesdr26tnbh87u0xew7fyc.middlewares=redirect-to-https
+            - 'traefik.http.routers.http-0-fonesdr26tnbh87u0xew7fyc.rule=Host(`new.marvin.konzhi.com`) && PathPrefix(`/`)'
+            - traefik.http.routers.http-0-fonesdr26tnbh87u0xew7fyc.service=http-0-fonesdr26tnbh87u0xew7fyc
+            - traefik.http.routers.https-0-fonesdr26tnbh87u0xew7fyc.entryPoints=https
+            - traefik.http.routers.https-0-fonesdr26tnbh87u0xew7fyc.middlewares=gzip
+            - 'traefik.http.routers.https-0-fonesdr26tnbh87u0xew7fyc.rule=Host(`new.marvin.konzhi.com`) && PathPrefix(`/`)'
+            - traefik.http.routers.https-0-fonesdr26tnbh87u0xew7fyc.service=https-0-fonesdr26tnbh87u0xew7fyc
+            - traefik.http.routers.https-0-fonesdr26tnbh87u0xew7fyc.tls.certresolver=letsencrypt
+            - traefik.http.routers.https-0-fonesdr26tnbh87u0xew7fyc.tls=true
+            - traefik.http.services.http-0-fonesdr26tnbh87u0xew7fyc.loadbalancer.server.port=3000
+            - traefik.http.services.https-0-fonesdr26tnbh87u0xew7fyc.loadbalancer.server.port=3000
+            - 'caddy_0.encode=zstd gzip'
+            - 'caddy_0.handle_path.0_reverse_proxy={{upstreams 3000}}'
+            - 'caddy_0.handle_path=/*'
+            - caddy_0.header=-Server
+            - 'caddy_0.try_files={path} /index.html /index.php'
+            - 'caddy_0=https://new.marvin.konzhi.com'
+            - caddy_ingress_network=coolify
+            - coolify.managed=true
+            - coolify.version=4.0.0-beta.468
+            - coolify.applicationId=21
+            - coolify.type=application
+            - coolify.name=fonesdr26tnbh87u0xew7fyc
+            - coolify.resourceName=kz-openclaw
+            - coolify.projectName=openclaw
+            - coolify.serviceName=kz-openclaw
+            - coolify.environmentName=production
+            - coolify.pullRequestId=0
+        volumes:
+            - '/data/coolify/applications/fonesdr26tnbh87u0xew7fyc:/data'
+networks:
+    coolify:
+        external: true
+        name: coolify
+        attachable: true

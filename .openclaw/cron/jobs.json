@@ -67,7 +67,7 @@
       "name": "Напоминание: счета бухгалтеру",
       "enabled": true,
       "createdAtMs": 1770565000000,
-      "updatedAtMs": 1773547208190,
+      "updatedAtMs": 1773648126941,
       "schedule": {
         "kind": "cron",
         "expr": "0 12 * * *",
@@ -86,15 +86,14 @@
         "bestEffort": true
       },
       "state": {
-        "lastRunAtMs": 1773547200031,
-        "lastStatus": "error",
-        "lastDurationMs": 8159,
-        "consecutiveErrors": 6,
-        "nextRunAtMs": 1773633600000,
-        "lastRunStatus": "error",
+        "lastRunAtMs": 1773648120516,
+        "lastStatus": "ok",
+        "lastDurationMs": 6425,
+        "consecutiveErrors": 0,
+        "nextRunAtMs": 1773720000000,
+        "lastRunStatus": "ok",
         "lastDeliveryStatus": "delivered",
-        "lastDelivered": true,
-        "lastError": "⚠️ ✉️ Message failed"
+        "lastDelivered": true
       }
     },
     {
@@ -119,7 +118,7 @@
         "mode": "none"
       },
       "state": {
-        "nextRunAtMs": 1773612000000,
+        "nextRunAtMs": 1773698400000,
         "lastRunAtMs": 1773525600027,
         "lastStatus": "ok",
         "lastDurationMs": 7759,
@@ -127,7 +126,7 @@
         "lastRunStatus": "ok",
         "lastDeliveryStatus": "not-delivered",
         "lastDelivered": false,
-        "runningAtMs": 1773612000008
+        "runningAtMs": 1773649898726
       }
     },
     {
