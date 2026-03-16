@@ -41,3 +41,5 @@ projects/
 # OS junk
 .DS_Store
 Thumbs.db
+openclaw.tar.gz
+.openclaw_bak/
