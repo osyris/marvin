@@ -1,14 +1,14 @@
 services:
-    fonesdr26tnbh87u0xew7fyc-082005989581:
-        image: 'fonesdr26tnbh87u0xew7fyc:515125db01190a1cf6cb72b00435c74ad838151f'
-        container_name: fonesdr26tnbh87u0xew7fyc-082005989581
+    fonesdr26tnbh87u0xew7fyc-162855309978:
+        image: 'fonesdr26tnbh87u0xew7fyc:2af444832c97fd7b66807b23fcd0772a298aef48'
+        container_name: fonesdr26tnbh87u0xew7fyc-162855309978
         restart: unless-stopped
         expose:
             - '3000'
         networks:
             coolify:
                 aliases:
-                    - fonesdr26tnbh87u0xew7fyc-082005989581
+                    - fonesdr26tnbh87u0xew7fyc-162855309978
         mem_limit: '0'
         memswap_limit: '0'
         mem_swappiness: 60

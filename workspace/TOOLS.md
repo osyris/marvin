@@ -40,6 +40,23 @@ konstantin@amanati.ai
 
 Add whatever helps you do your job. This is your cheat sheet.
 
+---
+
+## #balidev / Bali Services OS — рабочая структура
+
+- Папка проекта: `/data/workspace/projects/bali-services-os/`
+- Distilled видение (всегда актуальная версия):
+  - `/data/workspace/projects/bali-services-os/current-vision.md`
+- Подробные touchpoints по дням:
+  - `/data/workspace/projects/bali-services-os/sessions/YYYY-MM-DD.md`
+- Дополнительно: **каждое взаимодействие по проекту** логировать в дневную память:
+  - `/data/workspace/memory/YYYY-MM-DD.md`
+
+Правило синка:
+- `current-vision.md` — только сжатая, актуальная картина
+- `sessions/*.md` — детальная история обсуждений
+- `memory/*.md` — общая хронология дня
+
 ## Runtime Environment
 
 - **Python:** 3.11.2 (`/usr/bin/python3`)

@@ -187,6 +187,18 @@ Think of it like a human reviewing their journal and updating their mental model
 
 The goal: Be helpful without being annoying. Check in a few times a day, do useful background work, but respect quiet time.
 
+## Project Workflow: Bali Services OS (`#balidev`)
+
+When working on this project:
+1. Keep a distilled source of truth in `projects/bali-services-os/current-vision.md`
+2. Keep detailed interaction notes in `projects/bali-services-os/sessions/YYYY-MM-DD.md`
+3. For **every interaction/touchpoint** related to this project, also log a short update in daily memory: `memory/YYYY-MM-DD.md`
+
+Purpose:
+- `current-vision.md` = clean, current strategy
+- `sessions/` = detailed history
+- daily `memory/` = chronological continuity across all work
+
 ## Make It Yours
 
 This is a starting point. Add your own conventions, style, and rules as you figure out what works.
